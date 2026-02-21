@@ -108,9 +108,14 @@ const techStacks = [
   { icon: "css.svg", language: "CSS" },
   { icon: "javascript.svg", language: "JavaScript" },
   { icon: "tailwind.svg", language: "Tailwind CSS" },
+  { icon: "laravel.svg", language: "Laravel" },
+  { icon: "php.svg", language: "PHP" },
+  { icon: "mysql.svg", language: "MySQL" },
+  { icon: "git.svg", language: "Git" },
+  { icon: "rest-api-svgrepo-com.svg", language: "REST API" },
+  { icon: "postman-icon.svg", language: "Postman" },
   { icon: "reactjs.svg", language: "ReactJS" },
   { icon: "vite.svg", language: "Vite" },
-  { icon: "nodejs.svg", language: "Node JS" },
   { icon: "bootstrap.svg", language: "Bootstrap" },
   { icon: "firebase.svg", language: "Firebase" },
   { icon: "MUI.svg", language: "Material UI" },
@@ -125,7 +130,14 @@ export default function FullWidthTabs() {
   const [certificates, setCertificates] = useState([]);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
-  const isMobile = window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
   const initialItems = isMobile ? 4 : 6;
 
   useEffect(() => {

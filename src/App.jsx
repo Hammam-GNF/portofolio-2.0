@@ -10,7 +10,6 @@ import ContactPage from "./Pages/Contact";
 import ProjectDetails from "./components/ProjectDetail";
 import WelcomeScreen from "./Pages/WelcomeScreen";
 import { AnimatePresence } from 'framer-motion';
-import notfound from "./Pages/404";
 import NotFoundPage from "./Pages/404";
 
 const LandingPage = ({ showWelcome, setShowWelcome }) => {
@@ -35,8 +34,8 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => {
               <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
               <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
                 © 2026{" "}
-                <a href="www.eki.my.id" className="hover:underline">
-                  EkiZR™
+                <a href="www.hammam.my.id" className="hover:underline">
+                  HammamGNF™
                 </a>
                 . All Rights Reserved.
               </span>
@@ -56,8 +55,8 @@ const ProjectPageLayout = () => (
         <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
         <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
           © 2026{" "}
-          <a href="www.eki.my.id" className="hover:underline">
-            EkiZR™
+          <a href="www.hammam.my.id" className="hover:underline">
+            HammamGNF™
           </a>
           . All Rights Reserved.
         </span>
