@@ -200,6 +200,25 @@ export default function FullWidthTabs() {
     }
   }, []);
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+
+      if (hash.startsWith("#Portofolio-")) {
+        const index = parseInt(hash.split("-")[1]);
+
+        if (!isNaN(index)) {
+          setValue(index);
+        }
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
   const displayedProjects = showAllProjects ? projects : projects.slice(0, initialItems);
   const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, initialItems);
 

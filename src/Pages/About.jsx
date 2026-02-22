@@ -163,6 +163,7 @@ const AboutPage = () => {
       label: "Total Projects",
       description: "Web systems & backend applications",
       animation: "fade-right",
+      tab: 0,
     },
     {
       icon: Award,
@@ -171,6 +172,7 @@ const AboutPage = () => {
       label: "Certificates",
       description: "Technical skill development",
       animation: "fade-up",
+      tab: 1,
     },
     {
       icon: Globe,
@@ -179,6 +181,7 @@ const AboutPage = () => {
       label: "Years Coding",
       description: "Consistent growth & learning",
       animation: "fade-left",
+      tab: null,
     },
   ], [totalProjects, totalCertificates, YearExperience]);
 
@@ -252,28 +255,57 @@ const AboutPage = () => {
                 <FileText className="w-4 h-4 sm:w-5 sm:h-5" /> Download CV
               </button>
               </a>
-              <a href="#Portofolio" className="w-full lg:w-auto">
-              <button 
-                data-aos="fade-up"
-                data-aos-duration="1000"
-                className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg border border-[#a855f7]/50 text-[#a855f7] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:bg-[#a855f7]/10 "
-              >
-                <Code className="w-4 h-4 sm:w-5 sm:h-5" /> View Projects
-              </button>
-              </a>
+              <div className="w-full lg:w-auto">
+                <button 
+                  onClick={() => {
+                    window.location.hash = "Portofolio-0";
+
+                    const section = document.getElementById("Portofolio");
+                    if (section) {
+                      section.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg border border-[#a855f7]/50 text-[#a855f7] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:bg-[#a855f7]/10 "
+                >
+                  <Code className="w-4 h-4 sm:w-5 sm:h-5" /> View Projects
+                </button>
+              </div>
             </div>
           </div>
 
           <ProfileImage />
         </div>
 
-        <a href="#Portofolio">
+        {/* <a href="#Portofolio">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 cursor-pointer">
             {statsData.map((stat) => (
               <StatCard key={stat.label} {...stat} />
             ))}
           </div>
-        </a>
+        </a> */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 cursor-pointer">
+          {statsData.map((stat) =>
+            stat.tab !== null ? (
+              <div
+                key={stat.label}
+                onClick={() => {
+                  window.location.hash = `Portofolio-${stat.tab}`;
+
+                  const section = document.getElementById("Portofolio");
+                  if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              >
+                <StatCard {...stat} />
+              </div>
+            ) : (
+              <StatCard key={stat.label} {...stat} />
+            )
+          )}
+        </div>
       </div>
 
       <style jsx>{`
