@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { MessageCircle, UserCircle2, Loader2, AlertCircle, Send, ImagePlus, X, Pin } from 'lucide-react';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { supabase } from '../../supabase';
-
+import { commentService } from "../../services";
 
 const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
     <div 
@@ -243,11 +241,7 @@ const Komentar = () => {
     useEffect(() => {
         const fetchPinnedComment = async () => {
             try {
-                const { data, error } = await supabase
-                    .from('portfolio_comments')
-                    .select('*')
-                    .eq('is_pinned', true)
-                    .single();
+                const data = await commentService.getPinnedComment();
                 
                 if (error && error.code !== 'PGRST116') {
                     console.error('Error fetching pinned comment:', error);
@@ -268,11 +262,7 @@ const Komentar = () => {
     // Fetch regular comments (excluding pinned) and set up real-time subscription
     useEffect(() => {
         const fetchComments = async () => {
-            const { data, error } = await supabase
-                .from('portfolio_comments')
-                .select('*')
-                .eq('is_pinned', false)
-                .order('created_at', { ascending: false });
+            const data = await commentService.getComments();
             
             if (error) {
                 console.error('Error fetching comments:', error);
@@ -285,46 +275,13 @@ const Komentar = () => {
         fetchComments();
 
         // Set up real-time subscription
-        const subscription = supabase
-            .channel('portfolio_comments')
-            .on('postgres_changes', 
-                { 
-                    event: '*', 
-                    schema: 'public', 
-                    table: 'portfolio_comments',
-                    filter: 'is_pinned=eq.false'
-                }, 
-                () => {
-                    fetchComments(); // Refresh comments when changes occur
-                }
-            )
-            .subscribe();
+        const subscription = commentService.subscribe(
+            fetchComments
+        );
 
         return () => {
             subscription.unsubscribe();
         };
-    }, []);
-
-    const uploadImage = useCallback(async (imageFile) => {
-        if (!imageFile) return null;
-        
-        const fileExt = imageFile.name.split('.').pop();
-        const fileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
-        const filePath = `profile-images/${fileName}`;
-
-        const { error: uploadError } = await supabase.storage
-            .from('profile-images')
-            .upload(filePath, imageFile);
-
-        if (uploadError) {
-            throw uploadError;
-        }
-
-        const { data } = supabase.storage
-            .from('profile-images')
-            .getPublicUrl(filePath);
-
-        return data.publicUrl;
     }, []);
 
     const handleCommentSubmit = useCallback(async ({ newComment, userName, imageFile }) => {
@@ -332,19 +289,15 @@ const Komentar = () => {
         setIsSubmitting(true);
         
         try {
-            const profileImageUrl = await uploadImage(imageFile);
-            
-            const { error } = await supabase
-                .from('portfolio_comments')
-                .insert([
-                    {
-                        content: newComment,
-                        user_name: userName,
-                        profile_image: profileImageUrl,
-                        is_pinned: false,
-                        created_at: new Date().toISOString()
-                    }
-                ]);
+            const profileImageUrl =
+                await commentService.uploadImage(imageFile);
+
+
+            await commentService.createComment({
+                content:newComment,
+                userName,
+                profileImage:profileImageUrl
+            });
 
             if (error) {
                 throw error;

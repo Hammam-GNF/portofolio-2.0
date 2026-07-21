@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Music2, Code2, Gamepad2, Headphones } from "lucide-react";
+import presenceService from "../../services/presence.service";
 
 export default function PresenceWidget() {
   const [activities, setActivities] = useState([]);
@@ -7,46 +8,9 @@ export default function PresenceWidget() {
   useEffect(() => {
     const fetchPresence = async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/presence");
-        const data = await res.json();
+        const data = await presenceService.getPresence();
 
-        const normalized = (data.activities || [])
-          .slice(0, 2)
-          .map((a, idx) => {
-            if (a.type === "spotify") {
-              return {
-                key: `spotify-${idx}`,
-                title: a.title,
-                subtitle: a.artist,
-                image: a.image,
-                type: "spotify",
-                icon: "spotify",
-                iconImage: a.iconImage || null
-              };
-            }
-
-            if (a.type === "coding") {
-              return {
-                key: `coding-${idx}`,
-                title: a.details || "Coding",
-                subtitle: a.state || a.app,
-                type: "coding",
-                icon: "vscode",
-                iconImage: a.iconImage || null
-              };
-            }
-
-            return {
-              key: `activity-${idx}`,
-              title: a.name || "Playing a Game",
-              subtitle: a.state || a.type,
-              type: a.type || "unknown",
-              icon: "gaming",
-              iconImage: a.iconImage || null
-            };
-          });
-
-        setActivities(normalized);
+        setActivities(data);
       } catch (error) {
         console.error("Failed to fetch presence:", error);
       }

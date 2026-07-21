@@ -6,7 +6,7 @@ import Komentar from "../components/portfolio/Commentar";
 import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import axios from "axios";
+import { contactService } from "../services";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -44,17 +44,7 @@ const ContactPage = () => {
     });
 
     try {
-      // Ganti dengan email Anda di FormSubmit
-      const formSubmitUrl = 'https://formsubmit.co/hammamgonjil@gmail.com';
-      
-      // Siapkan data form untuk FormSubmit
-      const submitData = new FormData();
-      submitData.append('name', formData.name);
-      submitData.append('email', formData.email);
-      submitData.append('message', formData.message);
-      submitData.append('_subject', 'Pesan Baru dari Website Portfolio');
-      submitData.append('_captcha', 'false'); // Nonaktifkan captcha
-      submitData.append('_template', 'table'); // Format email sebagai tabel
+      await contactService.sendMessage(formData);
 
       await axios.post(formSubmitUrl, submitData, {
         headers: {
