@@ -3,6 +3,7 @@ import { MessageCircle, UserCircle2, Loader2, AlertCircle, Send, ImagePlus, X, P
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { commentService } from "../../services";
+import useComments from "../../hooks/useComments";
 
 const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
     <div 
@@ -224,110 +225,25 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
 });
 
 const Komentar = () => {
-    const [comments, setComments] = useState([]);
-    const [pinnedComment, setPinnedComment] = useState(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [error, setError] = useState('');
+
+    const {
+        comments,
+        pinnedComment,
+
+        isSubmitting,
+        error,
+
+        handleCommentSubmit,
+        formatDate
+
+    } = useComments();
 
     useEffect(() => {
-        // Initialize AOS
+
         AOS.init({
             once: false,
             duration: 1000,
         });
-    }, []);
-
-    // Fetch pinned comment
-    useEffect(() => {
-        const fetchPinnedComment = async () => {
-            try {
-                const data = await commentService.getPinnedComment();
-                
-                if (error && error.code !== 'PGRST116') {
-                    console.error('Error fetching pinned comment:', error);
-                    return;
-                }
-                
-                if (data) {
-                    setPinnedComment(data);
-                }
-            } catch (error) {
-                console.error('Error fetching pinned comment:', error);
-            }
-        };
-
-        fetchPinnedComment();
-    }, []);
-
-    // Fetch regular comments (excluding pinned) and set up real-time subscription
-    useEffect(() => {
-        const fetchComments = async () => {
-            const data = await commentService.getComments();
-            
-            if (error) {
-                console.error('Error fetching comments:', error);
-                return;
-            }
-            
-            setComments(data || []);
-        };
-
-        fetchComments();
-
-        // Set up real-time subscription
-        const subscription = commentService.subscribe(
-            fetchComments
-        );
-
-        return () => {
-            subscription.unsubscribe();
-        };
-    }, []);
-
-    const handleCommentSubmit = useCallback(async ({ newComment, userName, imageFile }) => {
-        setError('');
-        setIsSubmitting(true);
-        
-        try {
-            const profileImageUrl =
-                await commentService.uploadImage(imageFile);
-
-
-            await commentService.createComment({
-                content:newComment,
-                userName,
-                profileImage:profileImageUrl
-            });
-
-            if (error) {
-                throw error;
-            }
-        } catch (error) {
-            setError('Failed to post comment. Please try again.');
-            console.error('Error adding comment: ', error);
-        } finally {
-            setIsSubmitting(false);
-        }
-    }, [uploadImage]);
-
-    const formatDate = useCallback((timestamp) => {
-        if (!timestamp) return '';
-        const date = new Date(timestamp);
-        const now = new Date();
-        const diffMinutes = Math.floor((now - date) / (1000 * 60));
-        const diffHours = Math.floor(diffMinutes / 60);
-        const diffDays = Math.floor(diffHours / 24);
-
-        if (diffMinutes < 1) return 'Just now';
-        if (diffMinutes < 60) return `${diffMinutes}m ago`;
-        if (diffHours < 24) return `${diffHours}h ago`;
-        if (diffDays < 7) return `${diffDays}d ago`;
-
-        return new Intl.DateTimeFormat('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-        }).format(date);
     }, []);
 
     // Calculate total comments (pinned + regular)
