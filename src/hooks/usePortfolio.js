@@ -1,0 +1,200 @@
+import { useCallback, useEffect, useState } from "react";
+
+import {
+    projectService,
+    certificateService,
+} from "../services";
+
+
+const usePortfolio = () => {
+    const [projects, setProjects] = useState([]);
+    const [certificates, setCertificates] = useState([]);
+
+    const [showAllProjects, setShowAllProjects] = useState(false);
+    const [showAllCertificates, setShowAllCertificates] = useState(false);
+
+    const [isMobile, setIsMobile] = useState(
+        window.innerWidth < 768
+    );
+
+
+    const initialItems = isMobile ? 4 : 6;
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+
+        window.addEventListener(
+            "resize",
+            handleResize
+        );
+
+
+        return () =>
+            window.removeEventListener(
+                "resize",
+                handleResize
+            );
+
+    }, []);
+
+
+
+    const fetchPortfolio = useCallback(async () => {
+        try {
+
+            const [
+                projectData,
+                certificateData
+            ] = await Promise.all([
+                projectService.getAll(),
+                certificateService.getAll()
+            ]);
+
+
+            setProjects(projectData);
+            setCertificates(certificateData);
+
+
+        } catch (error) {
+
+            console.error(
+                "Failed loading portfolio data:",
+                error
+            );
+
+        }
+
+    }, []);
+
+
+
+    useEffect(() => {
+
+        setProjects(
+            projectService.getCached()
+        );
+
+        setCertificates(
+            certificateService.getCached()
+        );
+
+
+        fetchPortfolio();
+
+    }, [fetchPortfolio]);
+
+
+
+
+    const toggleShowMore = useCallback(
+        (type) => {
+
+            if(type === "projects") {
+
+                setShowAllProjects(
+                    previous => !previous
+                );
+
+                return;
+            }
+
+
+            setShowAllCertificates(
+                previous => !previous
+            );
+
+        },
+        []
+    );
+
+
+
+    const [activeTab, setActiveTab] = useState(0);
+
+
+
+    useEffect(() => {
+
+        const handleHashChange = () => {
+
+            const hash = window.location.hash;
+
+
+            if(hash.startsWith("#Portofolio-")) {
+
+                const index = parseInt(
+                    hash.split("-")[1]
+                );
+
+
+                if(!isNaN(index)) {
+                    setActiveTab(index);
+                }
+            }
+
+        };
+
+
+        handleHashChange();
+
+
+        window.addEventListener(
+            "hashchange",
+            handleHashChange
+        );
+
+
+        return () =>
+            window.removeEventListener(
+                "hashchange",
+                handleHashChange
+            );
+
+
+    }, []);
+
+
+
+
+    return {
+
+        projects,
+        certificates,
+
+        activeTab,
+        setActiveTab,
+
+        showAllProjects,
+        showAllCertificates,
+
+        toggleShowMore,
+
+        initialItems,
+
+        displayedProjects:
+            showAllProjects
+                ? projects
+                : projects.slice(
+                    0,
+                    initialItems
+                ),
+
+
+        displayedCertificates:
+            showAllCertificates
+                ? certificates
+                : certificates.slice(
+                    0,
+                    initialItems
+                ),
+
+    };
+
+};
+
+
+export default usePortfolio;
