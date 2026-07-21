@@ -1,3 +1,3 @@
-const router = [];
+import AppRouter from "./AppRouter";
 
-export default router;
+export default AppRouter;
