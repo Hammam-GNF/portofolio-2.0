@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
 import { Link } from "react-router-dom";
-import SocialLinks from "../components/SocialLinks";
-import Komentar from "../components/Commentar";
+import SocialLinks from "../components/social/SocialLinks";
+import Komentar from "../components/portfolio/Commentar";
 import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";

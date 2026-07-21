@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import Navbar from "../components/Navbar";
-import AnimatedBackground from "../components/Background";
+import Navbar from "../components/layout/Navbar";
+import AnimatedBackground from "../components/layout/Background";
 
 import Home from "../Pages/Home";
 import About from "../Pages/About";

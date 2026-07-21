@@ -9,11 +9,11 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import CardProject from "../components/CardProject";
+import CardProject from "../components/portfolio/CardProject";
 import TechStackIcon from "../components/TechStackIcon";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Certificate from "../components/Certificate";
+import Certificate from "../components/portfolio/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
 
 
