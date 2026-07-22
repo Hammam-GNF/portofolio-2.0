@@ -3,7 +3,7 @@ import "aos/dist/aos.css";
 
 import {
     AOS_CONFIG,
-} from "../constants/aos.constant";
+} from "../constants";
 
 
 const initializeAOS = () => {

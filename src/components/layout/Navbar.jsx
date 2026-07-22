@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { NAV_ITEMS } from "../../constants/navigation.constant";
+import { NAV_ITEMS } from "../../constants";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);

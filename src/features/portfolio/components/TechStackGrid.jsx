@@ -1,7 +1,7 @@
 import TechStackIcon from "../../../components/ui/TechStackIcon";
 import {
     TECH_STACKS
-} from "../../../constants/tech-stack.constant";
+} from "../../../constants";
 
 import {
     getAOSAnimation

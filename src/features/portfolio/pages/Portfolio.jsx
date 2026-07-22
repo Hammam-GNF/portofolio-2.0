@@ -21,11 +21,11 @@ import {
 
 import {
     TOGGLE_BUTTON
-} from "../../../constants/ui.constant";
+} from "../../../constants";
 
 import {
     AOS_CONFIG
-} from "../../../constants/aos.constant";
+} from "../../../constants";
 
 import {
     PORTFOLIO_SECTION_ID

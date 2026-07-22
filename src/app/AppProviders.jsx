@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import {
     initializeApp,
-} from "../utils/app";
+} from "../utils";
 
 
 const AppProviders = ({ children }) => {

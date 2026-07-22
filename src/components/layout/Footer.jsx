@@ -1,6 +1,6 @@
 import {
     FOOTER_CONFIG,
-} from "../../constants/ui.constant";
+} from "../../constants";
 
 
 const Footer = () => {

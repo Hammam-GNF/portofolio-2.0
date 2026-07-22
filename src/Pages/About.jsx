@@ -1,10 +1,10 @@
 import React, { useEffect, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles, UserCheck } from "lucide-react"
-import { STORAGE_KEYS } from "@constants";
+import { STORAGE_KEYS } from "../constants";
 import appConfig from "../config/app";
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import { AOS_DEFAULT } from "../constants/animation";
+import { AOS_DEFAULT } from "../constants";
 
 // Memoized Components
 const Header = memo(() => (
