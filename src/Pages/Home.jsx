@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useCallback, memo } from "react"
 import { Github, Linkedin, Mail, ExternalLink, Instagram, Sparkles } from "lucide-react"
-import AOS from 'aos'
-import 'aos/dist/aos.css'
 
 // Memoized Components
 const StatusBadge = memo(() => (
@@ -91,21 +89,6 @@ const Home = () => {
   const [charIndex, setCharIndex] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
-
-  // Optimize AOS initialization
-  useEffect(() => {
-    const initAOS = () => {
-      AOS.init({
-        once: true,
-        offset: 10,
-       
-      });
-    };
-
-    initAOS();
-    window.addEventListener('resize', initAOS);
-    return () => window.removeEventListener('resize', initAOS);
-  }, []);
 
   useEffect(() => {
     setIsLoaded(true);
