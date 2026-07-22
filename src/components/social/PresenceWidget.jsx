@@ -1,21 +1,21 @@
 import usePresence from "../../hooks/usePresence";
+import {
+    getPresenceIcon,
+    getPresenceColors,
+    getPresenceLabel,
+} from "../../utils/presence";
 
 export default function PresenceWidget() {
 
-  if (!activities.length) return null;
+  const { activities } = usePresence();
 
-  const {
-    activities,
-    getIcon,
-    getColors,
-    getActivityLabel,
-  } = usePresence();
+  if (!activities.length) return null;
 
   return (
     <div className="">
       <div className="w-full space-y-2">
         {activities.map((act) => {
-          const colors = getColors(act.type);
+          const colors = getPresenceColors(act.type);
           
           return (
             <div key={act.key} className="group relative ">
@@ -43,7 +43,7 @@ export default function PresenceWidget() {
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
                           <div className={colors.text}>
-                            {getIcon(act.icon, "w-7 h-7")}
+                            {getPresenceIcon(act.icon, "w-7 h-7")}
                           </div>
                         </div>
                       )}
@@ -66,7 +66,7 @@ export default function PresenceWidget() {
                     <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded ${colors.badge} border backdrop-blur-sm mb-1`}>
                       <div className={`w-1 h-1 rounded-full ${colors.text.replace('text-', 'bg-')} animate-pulse`}></div>
                       <span className={`text-[9px] pt-[0.5px] font-bold ${colors.text} uppercase tracking-wider`}>
-                        {getActivityLabel(act.type)}
+                        {getPresenceLabel(act.type)}
                       </span>
                     </div>
                     
