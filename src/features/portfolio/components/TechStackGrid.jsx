@@ -27,7 +27,7 @@ const TechStackGrid = () => {
                         return (
 
                             <div
-                                key={index}
+                                key={stack.language || index}
                                 data-aos={animation.animation}
                                 data-aos-duration={animation.duration}
                             >

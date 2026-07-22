@@ -1,6 +1,5 @@
 import {
     useState,
-    useRef,
     useCallback,
     memo
 } from "react";
@@ -8,7 +7,6 @@ import {
 import {
     Loader2,
     Send,
-    ImagePlus,
     X
 } from "lucide-react";
 
@@ -39,12 +37,6 @@ const CommentForm = memo(
         imageFile,
         setImageFile
     ] = useState(null);
-
-
-
-    const textareaRef = useRef(null);
-    const fileInputRef = useRef(null);
-
 
 
     const handleImageChange = useCallback((e)=>{
@@ -155,7 +147,7 @@ imagePreview && (
 
 <img
 src={imagePreview}
-className="w-16 h-16 rounded-full object-cover"
+alt="Selected preview"
 />
 
 
@@ -179,7 +171,6 @@ setImageFile(null);
 
 <input
 type="file"
-ref={fileInputRef}
 onChange={handleImageChange}
 accept="image/*"
 />

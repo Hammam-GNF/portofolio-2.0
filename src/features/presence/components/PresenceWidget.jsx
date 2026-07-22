@@ -16,6 +16,35 @@ export default function PresenceWidget() {
       <div className="w-full space-y-2">
         {activities.map((act) => {
           const colors = getPresenceColors(act.type);
+
+          let iconContent;
+          if (act.image) {
+            iconContent = (
+              <img
+                src={act.image}
+                alt={act.title}
+                className="w-full h-full object-cover"
+              />
+            );
+          } else if (act.iconImage) {
+            iconContent = (
+              <div className="w-full h-full flex items-center justify-center p-2">
+                <img
+                  src={act.iconImage}
+                  alt={act.title}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            );
+          } else {
+            iconContent = (
+              <div className="w-full h-full flex items-center justify-center">
+                <div className={colors.text}>
+                  {getPresenceIcon(act.icon, "w-7 h-7")}
+                </div>
+              </div>
+            );
+          }
           
           return (
             <div key={act.key} className="group relative ">
@@ -26,27 +55,7 @@ export default function PresenceWidget() {
                   {/* Icon/Image */}
                   <div className="relative flex-shrink-0">
                     <div className="w-14 h-14 rounded-lg overflow-hidden bg-black/20 backdrop-blur-sm ring-2 ring-white/10 group-hover:ring-white/20 transition-all duration-300">
-                      {act.image ? (
-                        <img 
-                          src={act.image} 
-                          alt={act.title}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : act.iconImage ? (
-                        <div className="w-full h-full flex items-center justify-center p-2">
-                          <img 
-                            src={act.iconImage} 
-                            alt={act.title}
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <div className={colors.text}>
-                            {getPresenceIcon(act.icon, "w-7 h-7")}
-                          </div>
-                        </div>
-                      )}
+                      {iconContent}
                     </div>
                     
                     {/* Music bars - hanya Spotify */}

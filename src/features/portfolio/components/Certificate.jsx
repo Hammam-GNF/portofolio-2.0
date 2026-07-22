@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Modal, IconButton, Box, Fade, Backdrop, Zoom, Typography } from "@mui/material"
+import { Modal, IconButton, Box, Typography } from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close"
 import FullscreenIcon from "@mui/icons-material/Fullscreen"
 import {
@@ -19,13 +19,6 @@ const Certificate = ({ ImgSertif }) => {
 
 	const handleClose = () => {
 		setOpen(false)
-	}
-
-	const handleImageKeyDown = (event) => {
-		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
-			event.preventDefault()
-			handleOpen()
-		}
 	}
 
 	return (
@@ -72,27 +65,43 @@ const Certificate = ({ ImgSertif }) => {
 							zIndex: 1,
 						},
 					}}>
-					<img
-						className="certificate-image"
-						src={ImgSertif}
-						alt="Certificate"
-						style={{
-							width: "100%",
-							height: "auto",
-							display: "block",
-							objectFit: "cover",
-							filter:
-								`contrast(${CERTIFICATE_CONFIG.IMAGE_CONTRAST})
-								brightness(${CERTIFICATE_CONFIG.IMAGE_BRIGHTNESS})
-								saturate(${CERTIFICATE_CONFIG.IMAGE_SATURATION})`,
-							transition: `filter ${ANIMATION.NORMAL} ease`,
-						}}
+					<Box
+						component="button"
+						type="button"
 						onClick={handleOpen}
-					/>
+						aria-label="Open certificate modal"
+						sx={{
+							width: "100%",
+							border: 0,
+							padding: 0,
+							margin: 0,
+							backgroundColor: "transparent",
+							cursor: "pointer",
+							display: "block",
+							textAlign: "inherit",
+						}}>
+						<img
+							className="certificate-image"
+							src={ImgSertif}
+							alt="Certificate"
+							style={{
+								width: "100%",
+								height: "auto",
+								display: "block",
+								objectFit: "cover",
+								filter:
+									`contrast(${CERTIFICATE_CONFIG.IMAGE_CONTRAST})
+									brightness(${CERTIFICATE_CONFIG.IMAGE_BRIGHTNESS})
+									saturate(${CERTIFICATE_CONFIG.IMAGE_SATURATION})`,
+								transition: `filter ${ANIMATION.NORMAL} ease`,
+							}} />
+					</Box>
 				</Box>
 
 				{/* Hover Overlay */}
 				<Box
+					component="button"
+					type="button"
 					className="overlay"
 					sx={{
 						position: "absolute",
@@ -104,7 +113,12 @@ const Certificate = ({ ImgSertif }) => {
 						transition: `all ${ANIMATION.NORMAL} ease`,
 						cursor: "pointer",
 						zIndex: 2,
-					}}
+						border: 0,
+						margin: 0,
+						padding: 0,
+						backgroundColor: "transparent",
+					}} 
+					aria-label="View certificate"
 					onClick={handleOpen}>
 					{/* Hover Content */}
 					<Box

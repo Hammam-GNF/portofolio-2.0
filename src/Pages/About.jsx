@@ -1,5 +1,5 @@
 import React, { useEffect, memo, useMemo } from "react"
-import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles, UserCheck } from "lucide-react"
+import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
 import { AOS_DEFAULT, STORAGE_KEYS } from "../constants";
 import appConfig from "../config/app";
 import AOS from 'aos'
@@ -285,11 +285,12 @@ const AboutPage = () => {
             ))}
           </div>
         </a> */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 cursor-pointer">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
           {statsData.map((stat) =>
             stat.tab !== null ? (
-              <div
+              <button
                 key={stat.label}
+                type="button"
                 onClick={() => {
                   window.location.hash = `Portofolio-${stat.tab}`;
 
@@ -298,9 +299,10 @@ const AboutPage = () => {
                     section.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
+                className="w-full text-left"
               >
                 <StatCard {...stat} />
-              </div>
+              </button>
             ) : (
               <StatCard key={stat.label} {...stat} />
             )
@@ -308,7 +310,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-20px); }

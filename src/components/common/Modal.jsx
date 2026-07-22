@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Eye, ArrowRight, ExternalLink } from 'lucide-react';
 
 const ProjectCardModal = ({ title, description, link }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   return (
     <>
@@ -15,13 +28,17 @@ const ProjectCardModal = ({ title, description, link }) => {
       </button>
 
       {isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in"
-          onClick={() => setIsOpen(false)}
-        >
-          <div
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/50 animate-fade-in"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close modal"
+          />
+          <dialog
             className="relative w-full max-w-md rounded-lg bg-gray-900 p-6 text-white shadow-lg animate-slide-up sm:p-8"
-            onClick={(e) => e.stopPropagation()}
+            open
+            tabIndex={-1}
           >
             <button
               className="absolute top-4 right-4 rounded-md p-2 hover:bg-gray-800 transition-colors duration-200"
@@ -47,7 +64,7 @@ const ProjectCardModal = ({ title, description, link }) => {
                 Close
               </button>
             </div>
-          </div>
+          </dialog>
         </div>
       )}
     </>

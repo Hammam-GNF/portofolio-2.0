@@ -3,11 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   ExternalLink,
-  Github,
+  GitHub,
   Code2,
   Star,
   ChevronRight,
-  Layers,
 } from "lucide-react";
 
 import useProjectDetail from "../hooks";
@@ -106,7 +105,7 @@ const ProjectDetails = () => {
                   onClick={(e) => !handleGithubClick(project.Github) && e.preventDefault()}
                 >
                   <div className="absolute inset-0 translate-y-[100%] bg-gradient-to-r from-purple-600/10 to-pink-600/10 transition-transform duration-300 group-hover:translate-y-[0%]" />
-                  <Github className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
+                  <GitHub className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
                   <span className="relative font-medium">Github</span>
                 </a>
               </div>
@@ -118,8 +117,8 @@ const ProjectDetails = () => {
                 </h3>
                 {project.TechStack.length > 0 ? (
                   <div className="flex flex-wrap gap-2 md:gap-3">
-                    {project.TechStack.map((tech, index) => (
-                      <TechBadge key={index} tech={tech} />
+                    {project.TechStack.map((tech) => (
+                      <TechBadge key={tech} tech={tech} />
                     ))}
                   </div>
                 ) : (
@@ -149,8 +148,8 @@ const ProjectDetails = () => {
                 </h3>
                 {project.Features.length > 0 ? (
                   <ul className="list-none space-y-2">
-                    {project.Features.map((feature, index) => (
-                      <FeatureItem key={index} feature={feature} />
+                    {project.Features.map((feature) => (
+                      <FeatureItem key={feature} feature={feature} />
                     ))}
                   </ul>
                 ) : (
@@ -162,7 +161,7 @@ const ProjectDetails = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes blob {
           0% {
             transform: translate(0px, 0px) scale(1);

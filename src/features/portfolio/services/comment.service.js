@@ -57,10 +57,7 @@ class CommentService {
 
     const fileExt = imageFile.name.split(".").pop();
 
-    const fileName = `${Date.now()}_${Math.random()
-      .toString(36)
-      .substring(2)}.${fileExt}`;
-
+    const fileName = `${Date.now()}_${crypto.randomUUID()}.${fileExt}`;
 
     const filePath = `profile-images/${fileName}`;
 
