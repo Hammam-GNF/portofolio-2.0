@@ -1,25 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Swal from "sweetalert2";
 import projectService from "../services/project.service";
-
-import {
-  Globe,
-  Layout,
-  Cpu,
-  Code,
-  Package,
-} from "lucide-react";
-
-export const TECH_ICONS = {
-  React: Globe,
-  Tailwind: Layout,
-  Express: Cpu,
-  Python: Code,
-  Javascript: Code,
-  HTML: Code,
-  CSS: Code,
-  default: Package,
-};
+import { TECH_ICONS } from "../constants/tech-icons";
 
 const useProjectDetail = (id) => {
   const [project, setProject] = useState(null);
