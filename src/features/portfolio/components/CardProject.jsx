@@ -3,23 +3,6 @@ import { Link } from 'react-router-dom';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 
 const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
-  // Handle kasus ketika ProjectLink kosong
-  const handleLiveDemo = (e) => {
-    if (!ProjectLink) {
-      console.log("ProjectLink kosong");
-      e.preventDefault();
-      alert("Live demo link is not available");
-    }
-  };
-  
-  const handleDetails = (e) => {
-    if (!id) {
-      console.log("ID kosong");
-      e.preventDefault();
-      alert("Project details are not available");
-    }
-  };
-  
 
   return (
     <div className="group relative w-full">
@@ -48,7 +31,7 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
             <div className="pt-4 flex items-center justify-between">
               {ProjectLink ? (
                 <a
-                href={ProjectLink || "#"}
+                href={ProjectLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleLiveDemo}
