@@ -1,1 +1,1 @@
-export { default as PresenceService } from "./presence.service";
+export { default as presenceService } from "./presence.service";
