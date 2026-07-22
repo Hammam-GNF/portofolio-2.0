@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { NAV_ITEMS } from "../../constants";
+
+import {
+    NAV_ITEMS,
+    COLORS,
+    GRADIENTS,
+    ANIMATION,
+} from "../../constants";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,13 +68,18 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-                isOpen
-                    ? "bg-[#030014]"
-                    : scrolled
-                    ? "bg-[#030014]/50 backdrop-blur-xl"
-                    : "bg-transparent"
+            className={`fixed w-full top-0 z-50 transition-all duration-[500ms] ${
+                scrolled
+                    ? "backdrop-blur-xl"
+                    : ""
             }`}
+            style={{
+                backgroundColor: isOpen
+                    ? COLORS.BACKGROUND
+                    : scrolled
+                    ? "rgba(3,0,20,.5)"
+                    : "transparent",
+            }}
         >
             <div className="mx-auto px-[5%] sm:px-[5%] lg:px-[10%]">
                 <div className="flex items-center justify-between h-16">
@@ -77,7 +88,7 @@ const Navbar = () => {
                         <a
                             href="#Home"
                             onClick={(e) => scrollToSection(e, "#Home")}
-                            className="text-xl font-bold bg-gradient-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent"
+                            className={`text-xl font-bold bg-gradient-to-r ${GRADIENTS.PRIMARY} bg-clip-text text-transparent`}
                         >
                             Hammam GNF
                         </a>
@@ -86,31 +97,36 @@ const Navbar = () => {
                     {/* Desktop Navigation */}
                     <div className="hidden md:block">
                         <div className="ml-8 flex items-center space-x-8">
-                            {NAV_ITEMS.map((item) => (
-                                <a
-                                    key={item.label}
-                                    href={item.href}
-                                    onClick={(e) => scrollToSection(e, item.href)}
-                                    className="group relative px-1 py-2 text-sm font-medium"
-                                >
-                                    <span
-                                        className={`relative z-10 transition-colors duration-300 ${
-                                            activeSection === item.href.substring(1)
-                                                ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                                                : "text-[#e2d3fd] group-hover:text-white"
-                                        }`}
+                            {NAV_ITEMS.map((item) => {
+                                const isActive = activeSection === item.href.substring(1);
+
+                                return (
+                                    <a
+                                        key={item.label}
+                                        href={item.href}
+                                        onClick={(e) => scrollToSection(e, item.href)}
+                                        className="group relative px-1 py-2 text-sm font-medium"
                                     >
-                                        {item.label}
-                                    </span>
-                                    <span
-                                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform origin-left transition-transform duration-300 ${
-                                            activeSection === item.href.substring(1)
-                                                ? "scale-x-100"
-                                                : "scale-x-0 group-hover:scale-x-100"
-                                        }`}
-                                    />
-                                </a>
-                            ))}
+                                        <span
+                                            className={`relative z-10 transition-colors duration-300 ${
+                                                isActive
+                                                    ? `bg-gradient-to-r ${GRADIENTS.PRIMARY} bg-clip-text text-transparent font-semibold`
+                                                    : "text-[#e2d3fd] group-hover:text-white"
+                                            }`}
+                                        >
+                                            {item.label}
+                                        </span>
+
+                                        <span
+                                            className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r ${GRADIENTS.PRIMARY} transform origin-left transition-transform duration-300 ${
+                                                isActive
+                                                    ? "scale-x-100"
+                                                    : "scale-x-0 group-hover:scale-x-100"
+                                            }`}
+                                        />
+                                    </a>
+                                );
+                            })}
                         </div>
                     </div>
         
@@ -141,25 +157,33 @@ const Navbar = () => {
                 }`}
             >
                 <div className="px-4 py-6 space-y-4">
-                    {NAV_ITEMS.map((item, index) => (
-                        <a
-                            key={item.label}
-                            href={item.href}
-                            onClick={(e) => scrollToSection(e, item.href)}
-                            className={`block px-4 py-3 text-lg font-medium transition-all duration-300 ease ${
-                                activeSection === item.href.substring(1)
-                                    ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                                    : "text-[#e2d3fd] hover:text-white"
-                            }`}
-                            style={{
-                                transitionDelay: `${index * 100}ms`,
-                                transform: isOpen ? "translateX(0)" : "translateX(50px)",
-                                opacity: isOpen ? 1 : 0,
-                            }}
-                        >
-                            {item.label}
-                        </a>
-                    ))}
+                    {NAV_ITEMS.map((item, index) => {
+                        const isActive = activeSection === item.href.substring(1);
+
+                        return (
+                            <a
+                                key={item.label}
+                                href={item.href}
+                                onClick={(e) => scrollToSection(e, item.href)}
+                                className="block px-4 py-3 text-lg font-medium transition-all duration-300 ease"
+                                style={{
+                                    transitionDelay: `${index * 100}ms`,
+                                    transform: isOpen ? "translateX(0)" : "translateX(50px)",
+                                    opacity: isOpen ? 1 : 0,
+                                }}
+                            >
+                                <span
+                                    className={`inline-block ${
+                                        isActive
+                                            ? `bg-gradient-to-r ${GRADIENTS.PRIMARY} bg-clip-text text-transparent font-semibold`
+                                            : "text-[#e2d3fd] hover:text-white"
+                                    }`}
+                                >
+                                    {item.label}
+                                </span>
+                            </a>
+                        );
+                    })}
                 </div>
             </div>
         </nav>

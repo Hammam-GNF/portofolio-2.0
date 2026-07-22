@@ -2,6 +2,10 @@ import React, { useState } from "react"
 import { Modal, IconButton, Box, Fade, Backdrop, Zoom, Typography } from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close"
 import FullscreenIcon from "@mui/icons-material/Fullscreen"
+import {
+    COLORS,
+    ANIMATION,
+} from "../../../constants";
 
 const Certificate = ({ ImgSertif }) => {
 	const [open, setOpen] = useState(false)
@@ -24,7 +28,7 @@ const Certificate = ({ ImgSertif }) => {
 					overflow: "hidden",
 					borderRadius: 2,
 					boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
-					transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+					transition: `all ${ANIMATION.NORMAL} cubic-bezier(0.4,0,0.2,1)`,
 					"&:hover": {
 						transform: "translateY(-5px)",
 						boxShadow: "0 12px 24px rgba(0,0,0,0.2)",
@@ -65,7 +69,7 @@ const Certificate = ({ ImgSertif }) => {
 							display: "block",
 							objectFit: "cover",
 							filter: "contrast(1.10) brightness(0.9) saturate(1.1)",
-							transition: "filter 0.3s ease",
+							transition: `filter ${ANIMATION.NORMAL} ease`,
 						}}
 						onClick={handleOpen}
 					/>
@@ -81,7 +85,7 @@ const Certificate = ({ ImgSertif }) => {
 						right: 0,
 						bottom: 0,
 						opacity: 0,
-						transition: "all 0.3s ease",
+						transition: `all ${ANIMATION.NORMAL} ease`,
 						cursor: "pointer",
 						zIndex: 2,
 					}}
@@ -95,10 +99,10 @@ const Certificate = ({ ImgSertif }) => {
 							left: "50%",
 							transform: "translate(-50%, -60%)",
 							opacity: 0,
-							transition: "all 0.4s ease",
+							transition: `all ${ANIMATION.SLOW} ease`,
 							textAlign: "center",
 							width: "100%",
-							color: "white",
+							color: COLORS.WHITE,
 						}}>
 						<FullscreenIcon
 							sx={{
@@ -129,7 +133,7 @@ const Certificate = ({ ImgSertif }) => {
 				BackdropProps={{
 					timeout: 300,
 					sx: {
-						backgroundColor: "rgba(0, 0, 0, 0.9)",
+						backgroundColor: COLORS.BACKDROP,
 						backdropFilter: "blur(5px)",
 					},
 				}}
@@ -140,7 +144,7 @@ const Certificate = ({ ImgSertif }) => {
 					margin: 0,
 					padding: 0,
 					"& .MuiBackdrop-root": {
-						backgroundColor: "rgba(0, 0, 0, 0.9)",
+						backgroundColor: COLORS.BACKDROP,
 					},
 				}}>
 				<Box
@@ -163,7 +167,7 @@ const Certificate = ({ ImgSertif }) => {
 							position: "absolute",
 							right: 16,
 							top: 16,
-							color: "white",
+							color: COLORS.WHITE,
 							bgcolor: "rgba(0,0,0,0.6)",
 							zIndex: 1,
 							padding: 1,

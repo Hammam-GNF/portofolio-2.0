@@ -8,3 +8,4 @@ export * from "./storage";
 export * from "./tech-icons";
 export * from "./tech-stack.constant";
 export * from "./ui.constant";
+export * from "./social.constant";

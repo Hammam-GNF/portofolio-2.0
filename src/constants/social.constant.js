@@ -1,39 +1,36 @@
-export const APP_CONFIG = {
-    NAME: "HammamGNF Portfolio",
-
-    YEAR: 2026,
-
-    AUTHOR: "Hammam Ghina Nur Fauzi",
-
-    WEBSITE: "https://www.hammam.my.id",
-};
+import {
+    Linkedin,
+    Github,
+    Instagram,
+} from "lucide-react";
 
 export const SOCIAL_LINKS = [
     {
         name: "LinkedIn",
         displayName: "Let's Connect",
         subText: "on LinkedIn",
+        icon: Linkedin,
+        url: "https://www.linkedin.com/in/hammamghinanurfauzi/",
         color: "#0A66C2",
         gradient: "from-[#0A66C2] to-[#0077B5]",
-        url: "https://www.linkedin.com/in/hammamghinanurfauzi/",
         isPrimary: true,
     },
-
     {
         name: "Instagram",
         displayName: "Instagram",
         subText: "@hageenef",
+        icon: Instagram,
+        url: "https://www.instagram.com/hageenef",
         color: "#E4405F",
         gradient: "from-[#833AB4] via-[#E4405F] to-[#FCAF45]",
-        url: "https://www.instagram.com/hageenef",
     },
-
     {
         name: "GitHub",
         displayName: "Github",
         subText: "@Hammam-GNF",
+        icon: Github,
+        url: "https://github.com/Hammam-GNF",
         color: "#ffffff",
         gradient: "from-[#333] to-[#24292e]",
-        url: "https://github.com/Hammam-GNF",
     },
 ];
