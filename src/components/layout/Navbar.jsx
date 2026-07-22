@@ -5,7 +5,6 @@ import {
     NAV_ITEMS,
     COLORS,
     GRADIENTS,
-    ANIMATION,
 } from "../../constants";
 
 const Navbar = () => {
@@ -16,7 +15,7 @@ const Navbar = () => {
     useEffect(() => {
 
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            setScrolled(NAVBAR_CONFIG.SCROLL_THRESHOLD);
             const sections = NAV_ITEMS.map(item => {
                 const section = document.querySelector(item.href);
                 if (section) {
@@ -66,6 +65,12 @@ const Navbar = () => {
         setIsOpen(false);
     };
 
+    const getBackgroundColor = () => {
+        if (isOpen) return COLORS.BACKGROUND;
+        if (scrolled) return "rgba(3,0,20,.5)";
+        return "transparent";
+    };
+
     return (
         <nav
             className={`fixed w-full top-0 z-50 transition-all duration-[500ms] ${
@@ -74,11 +79,7 @@ const Navbar = () => {
                     : ""
             }`}
             style={{
-                backgroundColor: isOpen
-                    ? COLORS.BACKGROUND
-                    : scrolled
-                    ? "rgba(3,0,20,.5)"
-                    : "transparent",
+                backgroundColor: getBackgroundColor(),
             }}
         >
             <div className="mx-auto px-[5%] sm:px-[5%] lg:px-[10%]">

@@ -7,33 +7,3 @@ export const APP_CONFIG = {
 
     WEBSITE: "https://www.hammam.my.id",
 };
-
-export const SOCIAL_LINKS = [
-    {
-        name: "LinkedIn",
-        displayName: "Let's Connect",
-        subText: "on LinkedIn",
-        color: "#0A66C2",
-        gradient: "from-[#0A66C2] to-[#0077B5]",
-        url: "https://www.linkedin.com/in/hammamghinanurfauzi/",
-        isPrimary: true,
-    },
-
-    {
-        name: "Instagram",
-        displayName: "Instagram",
-        subText: "@hageenef",
-        color: "#E4405F",
-        gradient: "from-[#833AB4] via-[#E4405F] to-[#FCAF45]",
-        url: "https://www.instagram.com/hageenef",
-    },
-
-    {
-        name: "GitHub",
-        displayName: "Github",
-        subText: "@Hammam-GNF",
-        color: "#ffffff",
-        gradient: "from-[#333] to-[#24292e]",
-        url: "https://github.com/Hammam-GNF",
-    },
-];

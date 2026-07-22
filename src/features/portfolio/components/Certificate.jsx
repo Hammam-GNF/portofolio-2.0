@@ -5,6 +5,9 @@ import FullscreenIcon from "@mui/icons-material/Fullscreen"
 import {
     COLORS,
     ANIMATION,
+	MODAL_CONFIG,
+	CERTIFICATE_CONFIG,
+	ICON_SIZE,
 } from "../../../constants";
 
 const Certificate = ({ ImgSertif }) => {
@@ -16,6 +19,13 @@ const Certificate = ({ ImgSertif }) => {
 
 	const handleClose = () => {
 		setOpen(false)
+	}
+
+	const handleImageKeyDown = (event) => {
+		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+			event.preventDefault()
+			handleOpen()
+		}
 	}
 
 	return (
@@ -40,7 +50,10 @@ const Certificate = ({ ImgSertif }) => {
 							opacity: 1,
 						},
 						"& .certificate-image": {
-							filter: "contrast(1.05) brightness(1) saturate(1.1)",
+							filter:
+								`contrast(${CERTIFICATE_CONFIG.IMAGE_CONTRAST})
+								brightness(${CERTIFICATE_CONFIG.IMAGE_BRIGHTNESS})
+								saturate(${CERTIFICATE_CONFIG.IMAGE_SATURATION})`,
 						},
 					},
 				}}>
@@ -68,7 +81,10 @@ const Certificate = ({ ImgSertif }) => {
 							height: "auto",
 							display: "block",
 							objectFit: "cover",
-							filter: "contrast(1.10) brightness(0.9) saturate(1.1)",
+							filter:
+								`contrast(${CERTIFICATE_CONFIG.IMAGE_CONTRAST})
+								brightness(${CERTIFICATE_CONFIG.IMAGE_BRIGHTNESS})
+								saturate(${CERTIFICATE_CONFIG.IMAGE_SATURATION})`,
 							transition: `filter ${ANIMATION.NORMAL} ease`,
 						}}
 						onClick={handleOpen}
@@ -106,7 +122,7 @@ const Certificate = ({ ImgSertif }) => {
 						}}>
 						<FullscreenIcon
 							sx={{
-								fontSize: 40,
+								fontSize: ICON_SIZE.XL,
 								mb: 1,
 								filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.2))",
 							}}
@@ -129,12 +145,13 @@ const Certificate = ({ ImgSertif }) => {
 				onClose={handleClose}
 				aria-labelledby="modal-modal-title"
 				aria-describedby="modal-modal-description"
-				BackdropComponent={Backdrop}
-				BackdropProps={{
-					timeout: 300,
-					sx: {
-						backgroundColor: COLORS.BACKDROP,
-						backdropFilter: "blur(5px)",
+				slotProps={{
+					backdrop: {
+						timeout: 300,
+						sx: {
+							backgroundColor: COLORS.BACKDROP,
+							backdropFilter: "blur(5px)",
+						},
 					},
 				}}
 				sx={{
@@ -151,8 +168,8 @@ const Certificate = ({ ImgSertif }) => {
 					sx={{
 						position: "relative",
 						width: "auto",
-						maxWidth: "90vw",
-						maxHeight: "90vh",
+						maxWidth: MODAL_CONFIG.MAX_WIDTH,
+						maxHeight: MODAL_CONFIG.MAX_HEIGHT,
 						m: 0,
 						p: 0,
 						outline: "none",
@@ -177,7 +194,7 @@ const Certificate = ({ ImgSertif }) => {
 							},
 						}}
 						size="large">
-						<CloseIcon sx={{ fontSize: 24 }} />
+						<CloseIcon sx={{ fontSize: ICON_SIZE.MD }} />
 					</IconButton>
 
 					{/* Modal Image */}

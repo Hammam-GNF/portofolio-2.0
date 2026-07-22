@@ -9,17 +9,8 @@ export const ANIMATION = {
         SMOOTH: "cubic-bezier(0.4, 0, 0.2, 1)",
     },
 
-    AOS: {
-        OFFSET: 10,
-        DURATION: 600,
-        DELAY: 100,
-    },
-
     BLOB: {
         DURATION: "8s",
     },
 };
 
-export const AOS_DEFAULT = {
-    once: false,
-};
