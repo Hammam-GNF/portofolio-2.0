@@ -4,7 +4,8 @@ import {
     showSuccessAlert,
     showErrorAlert,
 } from "../utils/contact";
-import { contactService } from "../services";
+
+import contactService from "../services/contact.service";
 
 
 const useContact = () => {

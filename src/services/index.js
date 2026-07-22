@@ -6,6 +6,4 @@ export { default as certificateService } from "./certificate.service";
 
 export { default as commentService } from "./comment.service";
 
-export { default as contactService } from "./contact.service";
-
 export { default as presenceService } from "./presence.service";
