@@ -1,7 +1,19 @@
 import React, { useState, useEffect, useCallback, memo } from "react"
-import { Github, Linkedin, Mail, ExternalLink, Instagram, Sparkles } from "lucide-react"
+import {
+    Mail,
+    ExternalLink,
+    Sparkles,
+} from "lucide-react";
 
-// Memoized Components
+
+import {
+    HOME_TYPING_CONFIG,
+    HOME_WORDS,
+    HOME_TECH_STACK,
+    HOME_SOCIAL_LINKS,
+} from "../constants/home.constant";
+
+
 const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
     <div className="relative group">
@@ -70,18 +82,6 @@ const SocialLink = memo(({ icon: Icon, link }) => (
   </a>
 ));
 
-// Constants
-const TYPING_SPEED = 100;
-const ERASING_SPEED = 50;
-const PAUSE_DURATION = 2000;
-const WORDS = ["Backend-Oriented Developer", "Laravel & REST API Specialist", "Tech Enthusiast"];
-const TECH_STACK = ["Laravel", "PHP", "MySQL", "REST API", "Javascript", "Tailwind", "Git"];
-const SOCIAL_LINKS = [
-  { icon: Github, link: "https://github.com/Hammam-GNF" },
-  { icon: Linkedin, link: "https://www.linkedin.com/in/hammamghinanurfauzi/" },
-  { icon: Instagram, link: "https://www.instagram.com/hageenef" }
-];
-
 const Home = () => {
   const [text, setText] = useState("")
   const [isTyping, setIsTyping] = useState(true)
@@ -98,18 +98,25 @@ const Home = () => {
   // Optimize typing effect
   const handleTyping = useCallback(() => {
     if (isTyping) {
-      if (charIndex < WORDS[wordIndex].length) {
-        setText(prev => prev + WORDS[wordIndex][charIndex]);
+      if (charIndex < HOME_WORDS[wordIndex].length) {
+        setText(
+            prev => prev + HOME_WORDS[wordIndex][charIndex]
+        );
         setCharIndex(prev => prev + 1);
       } else {
-        setTimeout(() => setIsTyping(false), PAUSE_DURATION);
+        setTimeout(
+            () => setIsTyping(false),
+            HOME_TYPING_CONFIG.pauseDuration
+        );
       }
     } else {
       if (charIndex > 0) {
         setText(prev => prev.slice(0, -1));
         setCharIndex(prev => prev - 1);
       } else {
-        setWordIndex(prev => (prev + 1) % WORDS.length);
+        setWordIndex(
+            prev => (prev + 1) % HOME_WORDS.length
+        );
         setIsTyping(true);
       }
     }
@@ -118,7 +125,9 @@ const Home = () => {
   useEffect(() => {
     const timeout = setTimeout(
       handleTyping,
-      isTyping ? TYPING_SPEED : ERASING_SPEED
+      isTyping
+        ? HOME_TYPING_CONFIG.typingSpeed
+        : HOME_TYPING_CONFIG.erasingSpeed
     );
     return () => clearTimeout(timeout);
   }, [handleTyping]);
@@ -153,7 +162,7 @@ const Home = () => {
 
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-3 justify-start" data-aos="fade-up" data-aos-delay="1200">
-                  {TECH_STACK.map((tech, index) => (
+                  {HOME_TECH_STACK.map((tech, index) => (
                     <TechStack key={index} tech={tech} />
                   ))}
                 </div>
@@ -166,7 +175,7 @@ const Home = () => {
 
                 {/* Social Links */}
                 <div className="hidden sm:flex gap-4 justify-start" data-aos="fade-up" data-aos-delay="1600">
-                  {SOCIAL_LINKS.map((social, index) => (
+                  {HOME_SOCIAL_LINKS.map((social, index) => (
                     <SocialLink key={index} {...social} />
                   ))}
                 </div>
