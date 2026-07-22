@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
+import React, { useEffect } from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import useComments from "../hooks";
-import { formatCommentDate } from "../../../utils";
+import { formatCommentDate } from '@/utils';
 import {
     MessageCircle,
     UserCircle2,
@@ -69,7 +69,6 @@ const Komentar = () => {
                             <Comment 
                                 comment={pinnedComment} 
                                 formatDate={formatCommentDate}
-                                index={0}
                                 isPinned={true}
                             />
                         </div>
@@ -87,14 +86,13 @@ const Komentar = () => {
                                 key={comment.id} 
                                 comment={comment} 
                                 formatDate={formatCommentDate}
-                                index={index + (pinnedComment ? 1 : 0)}
                                 isPinned={false}
                             />
                         ))
                     )}
                 </div>
             </div>
-            <style jsx>{`
+            <style>{`
                 .custom-scrollbar::-webkit-scrollbar {
                     width: 6px;
                 }

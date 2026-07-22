@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import presenceService from "../services";
+import { presenceService } from "@/services";
 
 const usePresence = () => {
   const [activities, setActivities] = useState([]);
@@ -17,7 +17,7 @@ const usePresence = () => {
   useEffect(() => {
     fetchPresence();
 
-    const interval = setInterval(fetchPresence, 5000);
+    const interval = setInterval(fetchPresence,5000);
 
     return () => clearInterval(interval);
   }, [fetchPresence]);

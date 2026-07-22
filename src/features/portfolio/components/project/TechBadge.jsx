@@ -1,4 +1,4 @@
-import { TECH_ICONS } from "../../../../constants";
+import { TECH_ICONS } from "@/constants";
 
 const TechBadge = ({ tech }) => {
     const Icon = TECH_ICONS[tech] || TECH_ICONS.default;

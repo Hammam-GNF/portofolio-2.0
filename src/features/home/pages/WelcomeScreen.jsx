@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import { Code2, Github, Globe, User } from "lucide-react";
+import { Code2, GitHub, Globe, User } from "lucide-react";
 
 import { BackgroundEffect, IconButton, Typewriter } from "../components";
 
-import useWelcomeScreen from "../hooks";
-
-
 const WelcomeScreen = ({ onLoadingComplete }) => {
-  const {isLoading} = useWelcomeScreen(onLoadingComplete);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     AOS.init({
@@ -71,8 +68,8 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                 className="flex justify-center gap-3 sm:gap-4 md:gap-8 mb-6 sm:mb-8 md:mb-12"
                 variants={childVariants}
               >
-                {[Code2, User, Github].map((Icon, index) => (
-                  <div key={index} data-aos="fade-down" data-aos-delay={index * 200}>
+                {[Code2, User, GitHub].map((Icon, index) => (
+                  <div key={Icon.name} data-aos="fade-down" data-aos-delay={index * 200}>
                     <IconButton Icon={Icon} />
                   </div>
                 ))}

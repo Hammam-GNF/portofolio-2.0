@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { commentService } from "../../../services";
+import { commentService } from "@/services";
 
 const useComments = () => {
     const [comments, setComments] = useState([]);

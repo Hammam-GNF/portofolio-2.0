@@ -1,5 +1,5 @@
 import Certificate from "./Certificate";
-import { getAOSAnimation } from "../../../utils";
+import { getAOSAnimation } from "@/utils";
 
 
 const CertificateGrid = ({

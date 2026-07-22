@@ -109,17 +109,15 @@ const Home = () => {
             HOME_TYPING_CONFIG.pauseDuration
         );
       }
-    } else {
-      if (charIndex > 0) {
+    } else if (charIndex > 0) {
         setText(prev => prev.slice(0, -1));
         setCharIndex(prev => prev - 1);
-      } else {
+  } else {
         setWordIndex(
             prev => (prev + 1) % HOME_WORDS.length
         );
         setIsTyping(true);
-      }
-    }
+  }
   }, [charIndex, isTyping, wordIndex]);
 
   useEffect(() => {
@@ -162,8 +160,8 @@ const Home = () => {
 
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-3 justify-start" data-aos="fade-up" data-aos-delay="1200">
-                  {HOME_TECH_STACK.map((tech, index) => (
-                    <TechStack key={index} tech={tech} />
+                  {HOME_TECH_STACK.map((tech) => (
+                    <TechStack key={tech} tech={tech} />
                   ))}
                 </div>
 
@@ -175,8 +173,8 @@ const Home = () => {
 
                 {/* Social Links */}
                 <div className="hidden sm:flex gap-4 justify-start" data-aos="fade-up" data-aos-delay="1600">
-                  {HOME_SOCIAL_LINKS.map((social, index) => (
-                    <SocialLink key={index} {...social} />
+                  {HOME_SOCIAL_LINKS.map((social) => (
+                    <SocialLink key={social.link} {...social} />
                   ))}
                 </div>
               </div>

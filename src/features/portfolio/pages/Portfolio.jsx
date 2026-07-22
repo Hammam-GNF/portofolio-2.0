@@ -8,26 +8,16 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Code, Award, Boxes } from "lucide-react";
 import usePortfolio from "../hooks";
 import ProjectGrid, { CertificateGrid, TechStackGrid } from "../components";
 
 import {
     PORTFOLIO_HEADER,
     PORTFOLIO_TABS,
+    PORTFOLIO_SECTION_ID,
 } from "../constants";
 
-import {
-    TOGGLE_BUTTON
-} from "../../../constants";
-
-import {
-    AOS_CONFIG
-} from "../../../constants";
-
-import {
-    PORTFOLIO_SECTION_ID
-} from "../constants";
+import { TOGGLE_BUTTON, AOS_CONFIG } from "@/constants";
 
 
 

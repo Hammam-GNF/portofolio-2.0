@@ -5,7 +5,7 @@ import Navbar from "../components/layout/Navbar";
 import AnimatedBackground from "../features/home/components";
 
 import Home, { WelcomeScreen } from "../features/home/pages";
-import About from "../Pages/About";
+import About from "../pages/About";
 import Portfolio from "../features/portfolio/pages";
 import ContactPage from "../features/contact/pages";
 

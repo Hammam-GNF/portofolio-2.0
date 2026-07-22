@@ -1,11 +1,7 @@
-import TechStackIcon from "../../../components/ui/TechStackIcon";
-import {
-    TECH_STACKS
-} from "../../../constants";
+import TechStackIcon from "@/components/ui/TechStackIcon";
+import { TECH_STACKS } from "@/constants";
 
-import {
-    getAOSAnimation
-} from "../../../utils";
+import { getAOSAnimation } from "@/utils";
 
 
 const TechStackGrid = () => {
@@ -27,7 +23,7 @@ const TechStackGrid = () => {
                         return (
 
                             <div
-                                key={index}
+                                key={stack.language || index}
                                 data-aos={animation.animation}
                                 data-aos-duration={animation.duration}
                             >

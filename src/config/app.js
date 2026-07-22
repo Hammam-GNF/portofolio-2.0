@@ -1,18 +1,19 @@
 const appConfig = {
-    name: "Hammam Portfolio",
-
-    version: "1.0.0",
-
-    author: "Hammam Ghina Nur Fauzi",
+    app: {
+        name: "Hammam Portfolio",
+        version: "1.0.0",
+        author: "Hammam Ghina Nur Fauzi",
+    },
 
     locale: "id-ID",
 
     timezone: "Asia/Jakarta",
 
-    startCodingYear: 2023,
-
-    cvUrl:
-        "https://drive.google.com/drive/folders/1yixm0vQEGcxQVg7hRRVAtE4kEzyaR1jT?usp=sharing",
+    developer: {
+        startCodingYear: 2023,
+        cvUrl:
+            "https://drive.google.com/drive/folders/1yixm0vQEGcxQVg7hRRVAtE4kEzyaR1jT?usp=sharing",
+    },
 };
 
 export default appConfig;
