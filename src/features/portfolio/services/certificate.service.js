@@ -1,5 +1,5 @@
-import { supabase } from "../supabase";
-import storageService from "./storage.service";
+import { supabase } from "../../../supabase";
+import storageService from "../../../services/storage.service";
 
 const CACHE_KEY = "certificates";
 

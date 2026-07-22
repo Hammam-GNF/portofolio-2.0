@@ -10,7 +10,7 @@ import {
   Layers,
 } from "lucide-react";
 
-import useProjectDetail from "../../hooks/useProjectDetail";
+import useProjectDetail from "../hooks/useProjectDetail";
 
 const TechBadge = ({ tech }) => {
   const Icon = TECH_ICONS[tech] || TECH_ICONS.default;

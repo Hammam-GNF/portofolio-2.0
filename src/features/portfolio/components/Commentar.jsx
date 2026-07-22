@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
 import { MessageCircle, UserCircle2, Loader2, AlertCircle, Send, ImagePlus, X, Pin } from 'lucide-react';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { commentService } from "../../services";
-import useComments from "../../hooks/useComments";
-import { formatCommentDate } from "../../utils/date.util";
+import { commentService } from "../../../services";
+import useComments from "../hooks/useComments";
+import { formatCommentDate } from "../../../utils/date.util";
 
 const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
     <div 

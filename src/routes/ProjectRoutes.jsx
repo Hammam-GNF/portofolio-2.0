@@ -1,4 +1,4 @@
-import ProjectDetails from "../components/portfolio/ProjectDetail";
+import ProjectDetails from "../features/portfolio/components/ProjectDetail";
 import ProjectLayout from "../layouts/ProjectLayout";
 
 const ProjectRoutes = () => {

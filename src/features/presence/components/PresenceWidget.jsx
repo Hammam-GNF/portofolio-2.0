@@ -1,4 +1,4 @@
-import usePresence from "../../hooks/usePresence";
+import usePresence from "../hooks/usePresence";
 import {
     getPresenceIcon,
     getPresenceColors,

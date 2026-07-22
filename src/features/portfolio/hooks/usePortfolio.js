@@ -3,9 +3,9 @@ import { useCallback, useEffect, useState } from "react";
 import {
     projectService,
     certificateService,
-} from "../services";
+} from "../../../services";
 
-import { getDisplayedItems } from "../utils/portfolio";
+import { getDisplayedItems } from "../../portfolio/utils/portfolio";
 
 
 const usePortfolio = () => {

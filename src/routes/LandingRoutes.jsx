@@ -6,7 +6,7 @@ import AnimatedBackground from "../features/home/components/Background";
 
 import Home from "../features/home/pages/Home";
 import About from "../Pages/About";
-import Portofolio from "../Pages/Portofolio";
+import Portfolio from "../features/portfolio/pages/Portfolio";
 import ContactPage from "../features/contact/pages/Contact";
 import WelcomeScreen from "../Pages/WelcomeScreen";
 
@@ -32,7 +32,7 @@ const LandingRoutes = () => {
 
                     <Home />
                     <About />
-                    <Portofolio />
+                    <Portfolio />
                     <ContactPage />
                 </>
             )}

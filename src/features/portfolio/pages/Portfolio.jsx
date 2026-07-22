@@ -6,26 +6,26 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import CardProject from "../components/portfolio/CardProject";
-import TechStackIcon from "../components/TechStackIcon";
+import CardProject from "../components/CardProject";
+import TechStackIcon from "../../../components/TechStackIcon";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Certificate from "../components/portfolio/Certificate";
+import Certificate from "../components/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
 import usePortfolio from "../hooks/usePortfolio";
-import { getAOSAnimation } from "../utils/aos";
+import { getAOSAnimation } from "../../../utils/aos";
 import {
     PORTFOLIO_HEADER,
     PORTFOLIO_TABS,
 } from "../constants/portfolio.constant";
 
-import { TECH_STACKS } from "../constants/tech-stack.constant";
+import { TECH_STACKS } from "../../../constants/tech-stack.constant";
 
-import { TOGGLE_BUTTON } from "../constants/ui.constant";
+import { TOGGLE_BUTTON } from "../../../constants/ui.constant";
 
 import {
     AOS_CONFIG,
-} from "../constants/aos.constant";
+} from "../../../constants/aos.constant";
 
 
 
