@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingRoutes from "../routes/LandingRoutes";
 import ProjectRoutes from "../routes/ProjectRoutes";
 
-import NotFoundPage from "../Pages/404";
+import NotFoundPage from "../pages/404";
 
 const AppRouter = () => {
     return (

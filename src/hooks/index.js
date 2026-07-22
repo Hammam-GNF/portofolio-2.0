@@ -1,3 +1,0 @@
-// src/hooks
-
-export {};
