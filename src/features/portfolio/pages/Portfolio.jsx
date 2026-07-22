@@ -6,25 +6,18 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import CardProject from "../components/CardProject";
-import TechStackIcon from "../../../components/TechStackIcon";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Certificate from "../components/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
 import usePortfolio from "../hooks/usePortfolio";
-import {
-    getAOSAnimation
-} from "../../../utils/aos";
+import ProjectGrid from "../components/ProjectGrid";
+import CertificateGrid from "../components/CertificateGrid";
+import TechStackGrid from "../components/TechStackGrid";
 
 import {
     PORTFOLIO_HEADER,
     PORTFOLIO_TABS,
 } from "../constants/portfolio.constant";
-
-import {
-    TECH_STACKS
-} from "../../../constants/tech-stack.constant";
 
 import {
     TOGGLE_BUTTON
@@ -260,88 +253,57 @@ export default function FullWidthTabs() {
 
         <>
           <TabPanel value={activeTab} index={0} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
-                {displayedProjects.map((project, index) => {
-                  const animation = getAOSAnimation(index);
 
-                  return (
-                        <div
-                            key={project.id || index}
-                            data-aos={animation.animation}
-                            data-aos-duration={animation.duration}
-                        >
-                          <CardProject
-                              Img={project.Img}
-                              Title={project.Title}
-                              Description={project.Description}
-                              Link={project.Link}
-                              id={project.id}
+              <ProjectGrid
+                  displayedProjects={displayedProjects}
+              />
+
+
+              {
+                  projects.length > initialItems && (
+
+                      <div className="mt-6 w-full flex justify-start">
+
+                          <ToggleButton
+                              onClick={() => toggleShowMore("projects")}
+                              isShowingMore={showAllProjects}
                           />
+
                       </div>
-                  );
-              })}
-              </div>
-            </div>
-            {projects.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
-                <ToggleButton
-                  onClick={() => toggleShowMore('projects')}
-                  isShowingMore={showAllProjects}
-                />
-              </div>
-            )}
+
+                  )
+              }
+
           </TabPanel>
 
           <TabPanel value={activeTab} index={1} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
-                {displayedCertificates.map((certificate, index) => {
-                  const animation = getAOSAnimation(index);
 
-                  return (
-                      <div
-                          key={certificate.id || index}
-                          data-aos={animation.animation}
-                          data-aos-duration={animation.duration}
-                      >
-                          <Certificate ImgSertif={certificate.Img} />
+              <CertificateGrid
+                  displayedCertificates={displayedCertificates}
+              />
+
+
+              {
+                  certificates.length > initialItems && (
+
+                      <div className="mt-6 w-full flex justify-start">
+
+                          <ToggleButton
+                              onClick={() => toggleShowMore("certificates")}
+                              isShowingMore={showAllCertificates}
+                          />
+
                       </div>
-                  );
-              })}
-              </div>
-            </div>
-            {certificates.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
-                <ToggleButton
-                  onClick={() => toggleShowMore('certificates')}
-                  isShowingMore={showAllCertificates}
-                />
-              </div>
-            )}
+
+                  )
+              }
+
           </TabPanel>
 
           <TabPanel value={activeTab} index={2} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
-                {TECH_STACKS.map((stack, index) => {
-                  const animation = getAOSAnimation(index);
 
-                  return (
-                      <div
-                          key={index}
-                          data-aos={animation.animation}
-                          data-aos-duration={animation.duration}
-                      >
-                          <TechStackIcon
-                              TechStackIcon={stack.icon}
-                              Language={stack.language}
-                          />
-                      </div>
-                  );
-              })}
-              </div>
-            </div>
+              <TechStackGrid />
+
           </TabPanel>
         </>
       </Box>
