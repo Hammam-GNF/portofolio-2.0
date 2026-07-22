@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import useComments from "../hooks/useComments";
-import { formatCommentDate } from "../../../utils/date.util";
+import useComments from "../hooks";
+import { formatCommentDate } from "../../../utils";
 import {
     MessageCircle,
     UserCircle2,

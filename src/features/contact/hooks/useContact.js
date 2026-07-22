@@ -3,9 +3,9 @@ import {
     showLoadingAlert,
     showSuccessAlert,
     showErrorAlert,
-} from "../utils/contact";
+} from "../utils";
 
-import contactService from "../services/contact.service";
+import contactService from "../services";
 
 
 const useContact = () => {

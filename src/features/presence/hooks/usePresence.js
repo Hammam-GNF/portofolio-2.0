@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import presenceService from "../services/presence.service";
+import presenceService from "../services";
 
 const usePresence = () => {
   const [activities, setActivities] = useState([]);

@@ -5,11 +5,11 @@ import {
     certificateService,
 } from "../services";
 
-import { getDisplayedItems } from "../../portfolio/utils/portfolio";
+import { getDisplayedItems } from "../../portfolio/utils";
 
 import {
     PORTFOLIO_INITIAL_ITEMS
-} from "../constants/portfolio.ui.constant";
+} from "../constants";
 
 
 

@@ -1,3 +1,3 @@
-// src/hooks/index.js
+// src/hooks
 
 export {};

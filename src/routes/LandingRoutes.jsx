@@ -2,13 +2,12 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import Navbar from "../components/layout/Navbar";
-import AnimatedBackground from "../features/home/components/Background";
+import AnimatedBackground from "../features/home/components";
 
-import Home from "../features/home/pages/Home";
+import Home, { WelcomeScreen } from "../features/home/pages";
 import About from "../Pages/About";
-import Portfolio from "../features/portfolio/pages/Portfolio";
-import ContactPage from "../features/contact/pages/Contact";
-import WelcomeScreen from "../features/home/pages/WelcomeScreen";
+import Portfolio from "../features/portfolio/pages";
+import ContactPage from "../features/contact/pages";
 
 import LandingLayout from "../layouts/LandingLayout";
 

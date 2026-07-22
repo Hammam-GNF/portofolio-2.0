@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Github, Globe, User } from "lucide-react";
 
-import BackgroundEffect from "../components/BackgroundEffect";
-import IconButton from "../components/IconButton";
-import Typewriter from "../components/Typewriter";
+import { BackgroundEffect, IconButton, Typewriter } from "../components";
 
-import useWelcomeScreen from "../hooks/useWelcomeScreen";
+import useWelcomeScreen from "../hooks";
 
 
 const WelcomeScreen = ({ onLoadingComplete }) => {

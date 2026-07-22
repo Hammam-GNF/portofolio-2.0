@@ -10,7 +10,7 @@ import {
   Layers,
 } from "lucide-react";
 
-import useProjectDetail from "../hooks/useProjectDetail";
+import useProjectDetail from "../hooks";
 import ProjectStats from "./project/ProjectStats";
 import FeatureItem from "./project/FeatureItem";
 import TechBadge from "./project/TechBadge";

@@ -1,5 +1,5 @@
 import CardProject from "./CardProject";
-import { getAOSAnimation } from "../../../utils/aos";
+import { getAOSAnimation } from "../../../utils";
 
 
 const ProjectGrid = ({

@@ -11,7 +11,7 @@ import {
     HOME_WORDS,
     HOME_TECH_STACK,
     HOME_SOCIAL_LINKS,
-} from "../constants/home.constant";
+} from "../constants";
 
 
 const StatusBadge = memo(() => (

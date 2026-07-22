@@ -5,7 +5,7 @@ import {
 
 import {
     getAOSAnimation
-} from "../../../utils/aos";
+} from "../../../utils";
 
 
 const TechStackGrid = () => {

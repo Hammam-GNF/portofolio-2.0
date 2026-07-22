@@ -2,7 +2,7 @@ import axios from "axios";
 
 import {
     buildContactFormData,
-} from "../utils/contact";
+} from "../utils";
 
 const FORM_URL =
   "https://formsubmit.co/hammamgonjil@gmail.com";

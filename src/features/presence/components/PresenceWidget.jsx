@@ -1,9 +1,9 @@
-import usePresence from "../hooks/usePresence";
+import usePresence from "../hooks";
 import {
     getPresenceIcon,
     getPresenceColors,
     getPresenceLabel,
-} from "../../utils/presence";
+} from "../utils";
 
 export default function PresenceWidget() {
 

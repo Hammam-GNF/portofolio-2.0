@@ -9,15 +9,13 @@ import Box from "@mui/material/Box";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Code, Award, Boxes } from "lucide-react";
-import usePortfolio from "../hooks/usePortfolio";
-import ProjectGrid from "../components/ProjectGrid";
-import CertificateGrid from "../components/CertificateGrid";
-import TechStackGrid from "../components/TechStackGrid";
+import usePortfolio from "../hooks";
+import ProjectGrid, { CertificateGrid, TechStackGrid } from "../components";
 
 import {
     PORTFOLIO_HEADER,
     PORTFOLIO_TABS,
-} from "../constants/portfolio.constant";
+} from "../constants";
 
 import {
     TOGGLE_BUTTON
@@ -29,7 +27,7 @@ import {
 
 import {
     PORTFOLIO_SECTION_ID
-} from "../constants/portfolio.ui.constant";
+} from "../constants";
 
 
 
