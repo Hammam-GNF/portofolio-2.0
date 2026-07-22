@@ -13,19 +13,30 @@ import "aos/dist/aos.css";
 import Certificate from "../components/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
 import usePortfolio from "../hooks/usePortfolio";
-import { getAOSAnimation } from "../../../utils/aos";
+import {
+    getAOSAnimation
+} from "../../../utils/aos";
+
 import {
     PORTFOLIO_HEADER,
     PORTFOLIO_TABS,
 } from "../constants/portfolio.constant";
 
-import { TECH_STACKS } from "../../../constants/tech-stack.constant";
-
-import { TOGGLE_BUTTON } from "../../../constants/ui.constant";
+import {
+    TECH_STACKS
+} from "../../../constants/tech-stack.constant";
 
 import {
-    AOS_CONFIG,
+    TOGGLE_BUTTON
+} from "../../../constants/ui.constant";
+
+import {
+    AOS_CONFIG
 } from "../../../constants/aos.constant";
+
+import {
+    PORTFOLIO_SECTION_ID
+} from "../constants/portfolio.ui.constant";
 
 
 
@@ -144,7 +155,7 @@ export default function FullWidthTabs() {
   }, []);
   
   return (
-    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
+    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id={PORTFOLIO_SECTION_ID}>
       {/* Header section - unchanged */}
       <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
         <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">

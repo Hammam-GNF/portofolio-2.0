@@ -18,4 +18,4 @@ const TechStackIcon = ({ TechStackIcon, Language }) => {
   );
 };
 
-export default TechStackIcon; 
+export default TechStackIcon;

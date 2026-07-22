@@ -3,9 +3,14 @@ import { useCallback, useEffect, useState } from "react";
 import {
     projectService,
     certificateService,
-} from "../../../services";
+} from "../services";
 
 import { getDisplayedItems } from "../../portfolio/utils/portfolio";
+
+import {
+    PORTFOLIO_INITIAL_ITEMS
+} from "../constants/portfolio.ui.constant";
+
 
 
 const usePortfolio = () => {
@@ -19,8 +24,9 @@ const usePortfolio = () => {
         window.innerWidth < 768
     );
 
-
-    const initialItems = isMobile ? 4 : 6;
+    const initialItems = isMobile
+        ? 4
+        : PORTFOLIO_INITIAL_ITEMS;
 
 
     useEffect(() => {
