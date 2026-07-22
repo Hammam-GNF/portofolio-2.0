@@ -1,4 +1,4 @@
-import TechStackIcon from "../../../components/TechStackIcon";
+import TechStackIcon from "../../../components/ui/TechStackIcon";
 import {
     TECH_STACKS
 } from "../../../constants/tech-stack.constant";
