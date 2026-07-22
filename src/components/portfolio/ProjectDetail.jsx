@@ -1,25 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  ArrowLeft, ExternalLink, Github, Code2, Star,
-  ChevronRight, Layers, Layout, Globe, Package, Cpu, Code,
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  Code2,
+  Star,
+  ChevronRight,
+  Layers,
 } from "lucide-react";
-import Swal from 'sweetalert2';
-import projectService from "../../services/project.service";
 
-const TECH_ICONS = {
-  React: Globe,
-  Tailwind: Layout,
-  Express: Cpu,
-  Python: Code,
-  Javascript: Code,
-  HTML: Code,
-  CSS: Code,
-  default: Package,
-};
+import useProjectDetail from "../../hooks/useProjectDetail";
 
 const TechBadge = ({ tech }) => {
-  const Icon = TECH_ICONS[tech] || TECH_ICONS["default"];
+  const Icon = TECH_ICONS[tech] || TECH_ICONS.default;
   
   return (
     <div className="group relative overflow-hidden px-3 py-2 md:px-4 md:py-2.5 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-xl border border-blue-500/10 hover:border-blue-500/30 transition-all duration-300 cursor-default">
@@ -79,38 +73,14 @@ const ProjectStats = ({ project }) => {
   );
 };
 
-const handleGithubClick = (githubLink) => {
-  if (githubLink === 'Private') {
-    Swal.fire({
-      icon: 'info',
-      title: 'Source Code Private',
-      text: 'Maaf, source code untuk proyek ini bersifat privat.',
-      confirmButtonText: 'Mengerti',
-      confirmButtonColor: '#3085d6',
-      background: '#030014',
-      color: '#ffffff'
-    });
-    return false;
-  }
-  return true;
-};
-
 const ProjectDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [project, setProject] = useState(null);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-
-  useEffect(() => {
-    window.scrollTo(0,0);
-
-    const selectedProject = projectService.getById(id);
-
-    if(selectedProject){
-      setProject(selectedProject);
-    }
-
-  }, [id]);
+  const {
+    project,
+    setIsImageLoaded,
+    handleGithubClick,
+  } = useProjectDetail(id);
 
   if (!project) {
     return (
