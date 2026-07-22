@@ -1,5 +1,8 @@
 import axios from "axios";
 
+import {
+    buildContactFormData,
+} from "../utils/contact";
 
 const FORM_URL =
   "https://formsubmit.co/hammamgonjil@gmail.com";
@@ -15,41 +18,12 @@ class ContactService {
   }) {
 
 
-    const formData = new FormData();
-
-
-    formData.append(
-      "name",
-      name
-    );
-
-    formData.append(
-      "email",
-      email
-    );
-
-    formData.append(
-      "message",
-      message
-    );
-
-
-    formData.append(
-      "_subject",
-      "Pesan Baru dari Website Portfolio"
-    );
-
-
-    formData.append(
-      "_captcha",
-      "false"
-    );
-
-
-    formData.append(
-      "_template",
-      "table"
-    );
+    const formData =
+      buildContactFormData({
+          name,
+          email,
+          message,
+      });
 
 
     return axios.post(

@@ -1,5 +1,9 @@
 import { useCallback, useState } from "react";
-import Swal from "sweetalert2";
+import {
+    showLoadingAlert,
+    showSuccessAlert,
+    showErrorAlert,
+} from "../utils/contact";
 import { contactService } from "../services";
 
 
@@ -55,15 +59,7 @@ const useContact = () => {
             setIsSubmitting(true);
 
 
-            Swal.fire({
-                title: "Mengirim Pesan...",
-                html: "Harap tunggu selagi kami mengirim pesan Anda",
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-
+            showLoadingAlert();
 
 
             try {
@@ -73,15 +69,7 @@ const useContact = () => {
                 );
 
 
-                await Swal.fire({
-                    title: "Berhasil!",
-                    text: "Pesan Anda telah berhasil terkirim!",
-                    icon: "success",
-                    confirmButtonColor: "#6366f1",
-                    timer: 2000,
-                    timerProgressBar: true
-                });
-
+                await showSuccessAlert();
 
 
                 resetForm();
@@ -96,12 +84,7 @@ const useContact = () => {
                 );
 
 
-                Swal.fire({
-                    title: "Gagal!",
-                    text: "Terjadi kesalahan. Silakan coba lagi nanti.",
-                    icon: "error",
-                    confirmButtonColor: "#6366f1"
-                });
+                showErrorAlert();
 
 
             } finally {
