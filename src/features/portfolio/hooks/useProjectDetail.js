@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Swal from "sweetalert2";
-import projectService from "../services";
-import { TECH_ICONS } from "../../../constants";
+import { projectService } from "../services";
+import { TECH_ICONS } from "@/constants";
 
 const useProjectDetail = (id) => {
   const [project, setProject] = useState(null);

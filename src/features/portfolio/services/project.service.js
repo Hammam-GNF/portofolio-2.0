@@ -1,7 +1,8 @@
-import { supabase } from "../../../supabase";
-import storageService from "../../../services";
+import { supabase } from "@/supabase";
+import { storageService } from "@/services";
+import { STORAGE_KEYS } from "@/constants";
 
-const CACHE_KEY = "projects";
+const CACHE_KEY = STORAGE_KEYS.PROJECTS;
 
 class ProjectService {
   async getAll(forceRefresh = false) {

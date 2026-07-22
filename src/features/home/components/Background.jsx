@@ -12,6 +12,7 @@ const AnimatedBackground = () => {
 	useEffect(() => {
 		let requestId
 
+
 		const handleScroll = () => {
 			const newScroll = window.pageYOffset
 

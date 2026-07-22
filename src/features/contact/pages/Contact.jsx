@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
-import SocialLinks from "../../../components/social/SocialLinks";
-import Komentar from "../../portfolio/components";
+import SocialLinks from "@/components/social/SocialLinks";
+import Komentar from "@/features/portfolio/components/Commentar";
 import AOS from "aos";
-import "aos/dist/aos.css";
 import useContact from "../hooks";
 
 const ContactPage = () => {

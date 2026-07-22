@@ -2,13 +2,7 @@ import React, { useState } from "react"
 import { Modal, IconButton, Box, Typography } from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close"
 import FullscreenIcon from "@mui/icons-material/Fullscreen"
-import {
-    COLORS,
-    ANIMATION,
-	MODAL_CONFIG,
-	CERTIFICATE_CONFIG,
-	ICON_SIZE,
-} from "../../../constants";
+import { COLORS, ANIMATION, MODAL_CONFIG, CERTIFICATE_CONFIG, ICON_SIZE } from "@/constants"
 
 const Certificate = ({ ImgSertif }) => {
 	const [open, setOpen] = useState(false)

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { ExternalLink } from "lucide-react";
 import AOS from "aos";
-import "aos/dist/aos.css";
 
 import {
     SOCIAL_LINKS,

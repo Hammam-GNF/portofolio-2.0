@@ -1,6 +1,4 @@
-import {
-    FOOTER_CONFIG,
-} from "../../constants";
+import { FOOTER_CONFIG } from "@/constants";
 
 
 const Footer = () => {

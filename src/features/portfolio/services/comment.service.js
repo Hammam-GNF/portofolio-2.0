@@ -1,4 +1,4 @@
-import { supabase } from "../../../supabase";
+import { supabase } from "@/supabase";
 
 class CommentService {
   async getPinnedComment() {

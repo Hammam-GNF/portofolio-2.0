@@ -17,10 +17,7 @@ import {
     PORTFOLIO_SECTION_ID,
 } from "../constants";
 
-import {
-    TOGGLE_BUTTON,
-    AOS_CONFIG,
-} from "../../../constants";
+import { TOGGLE_BUTTON, AOS_CONFIG } from "@/constants";
 
 
 

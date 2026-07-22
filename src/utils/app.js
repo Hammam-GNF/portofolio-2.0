@@ -6,11 +6,6 @@ import {
 } from "../constants";
 
 
-const initializeAOS = () => {
-    AOS.init(AOS_CONFIG);
-};
-
-
 export const initializeApp = () => {
-    initializeAOS();
+    AOS.init(AOS_CONFIG);
 };

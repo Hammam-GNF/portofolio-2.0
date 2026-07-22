@@ -5,7 +5,7 @@ import {
     certificateService,
 } from "../services";
 
-import { getDisplayedItems } from "../../portfolio/utils";
+import { getDisplayedItems } from "../utils";
 
 import {
     PORTFOLIO_INITIAL_ITEMS
@@ -35,10 +35,7 @@ const usePortfolio = () => {
         };
 
 
-        window.addEventListener(
-            "resize",
-            handleResize
-        );
+        window.matchMedia("(max-width:768px)")
 
 
         return () =>
@@ -134,12 +131,13 @@ const usePortfolio = () => {
 
             if(hash.startsWith("#Portofolio-")) {
 
-                const index = parseInt(
-                    hash.split("-")[1]
+                const index = Number.parseInt(
+                    hash.split("-")[1],
+                    10
                 );
 
 
-                if(!isNaN(index)) {
+                if (!Number.isNaN(index)) {
                     setActiveTab(index);
                 }
             }
