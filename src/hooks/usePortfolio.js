@@ -5,6 +5,8 @@ import {
     certificateService,
 } from "../services";
 
+import { getDisplayedItems } from "../utils/portfolio";
+
 
 const usePortfolio = () => {
     const [projects, setProjects] = useState([]);
@@ -175,22 +177,17 @@ const usePortfolio = () => {
 
         initialItems,
 
-        displayedProjects:
-            showAllProjects
-                ? projects
-                : projects.slice(
-                    0,
-                    initialItems
-                ),
+        displayedProjects: getDisplayedItems(
+            projects,
+            showAllProjects,
+            initialItems
+        ),
 
-
-        displayedCertificates:
-            showAllCertificates
-                ? certificates
-                : certificates.slice(
-                    0,
-                    initialItems
-                ),
+        displayedCertificates: getDisplayedItems(
+            certificates,
+            showAllCertificates,
+            initialItems
+        ),
 
     };
 
