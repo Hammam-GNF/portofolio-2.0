@@ -125,69 +125,6 @@ const useComments = () => {
 
 
 
-    const formatDate = useCallback(
-        (timestamp) => {
-
-            if (!timestamp) return "";
-
-
-            const date =
-                new Date(timestamp);
-
-            const now =
-                new Date();
-
-
-            const diffMinutes =
-                Math.floor(
-                    (now - date) /
-                    (1000 * 60)
-                );
-
-
-            const diffHours =
-                Math.floor(
-                    diffMinutes / 60
-                );
-
-
-            const diffDays =
-                Math.floor(
-                    diffHours / 24
-                );
-
-
-
-            if (diffMinutes < 1)
-                return "Just now";
-
-
-            if (diffMinutes < 60)
-                return `${diffMinutes}m ago`;
-
-
-            if (diffHours < 24)
-                return `${diffHours}h ago`;
-
-
-            if (diffDays < 7)
-                return `${diffDays}d ago`;
-
-
-
-            return new Intl.DateTimeFormat(
-                "en-US",
-                {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric"
-                }
-            ).format(date);
-
-        },
-        []
-    );
-
 
 
     return {
@@ -198,7 +135,6 @@ const useComments = () => {
         error,
 
         handleCommentSubmit,
-        formatDate
     };
 };
 

@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { commentService } from "../../services";
 import useComments from "../../hooks/useComments";
+import { formatCommentDate } from "../../utils/date.util";
 
 const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
     <div 
@@ -233,8 +234,7 @@ const Komentar = () => {
         isSubmitting,
         error,
 
-        handleCommentSubmit,
-        formatDate
+        handleCommentSubmit
 
     } = useComments();
 
@@ -279,7 +279,7 @@ const Komentar = () => {
                         <div data-aos="fade-down" data-aos-duration="800">
                             <Comment 
                                 comment={pinnedComment} 
-                                formatDate={formatDate}
+                                formatDate={formatCommentDate}
                                 index={0}
                                 isPinned={true}
                             />
@@ -297,7 +297,7 @@ const Komentar = () => {
                             <Comment 
                                 key={comment.id} 
                                 comment={comment} 
-                                formatDate={formatDate}
+                                formatDate={formatCommentDate}
                                 index={index + (pinnedComment ? 1 : 0)}
                                 isPinned={false}
                             />
