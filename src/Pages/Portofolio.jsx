@@ -13,6 +13,20 @@ import "aos/dist/aos.css";
 import Certificate from "../components/portfolio/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
 import usePortfolio from "../hooks/usePortfolio";
+import { getAOSAnimation } from "../utils/aos";
+import {
+    PORTFOLIO_HEADER,
+    PORTFOLIO_TABS,
+} from "../constants/portfolio.constant";
+
+import { TECH_STACKS } from "../constants/tech-stack.constant";
+
+import { TOGGLE_BUTTON } from "../constants/ui.constant";
+
+import {
+    AOS_CONFIG,
+} from "../constants/aos.constant";
+
 
 
 const ToggleButton = ({ onClick, isShowingMore }) => (
@@ -43,7 +57,11 @@ const ToggleButton = ({ onClick, isShowingMore }) => (
     "
   >
     <span className="relative z-10 flex items-center gap-2">
-      {isShowingMore ? "See Less" : "See More"}
+      {
+          isShowingMore
+              ? TOGGLE_BUTTON.SHOW_LESS
+              : TOGGLE_BUTTON.SHOW_MORE
+      }
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -99,27 +117,6 @@ function a11yProps(index) {
   };
 }
 
-// techStacks tetap sama
-const techStacks = [
-  { icon: "html.svg", language: "HTML" },
-  { icon: "css.svg", language: "CSS" },
-  { icon: "javascript.svg", language: "JavaScript" },
-  { icon: "tailwind.svg", language: "Tailwind CSS" },
-  { icon: "laravel.svg", language: "Laravel" },
-  { icon: "php.svg", language: "PHP" },
-  { icon: "mysql.svg", language: "MySQL" },
-  { icon: "git.svg", language: "Git" },
-  { icon: "rest-api-svgrepo-com.svg", language: "REST API" },
-  { icon: "postman-icon.svg", language: "Postman" },
-  { icon: "reactjs.svg", language: "ReactJS" },
-  { icon: "vite.svg", language: "Vite" },
-  { icon: "bootstrap.svg", language: "Bootstrap" },
-  { icon: "firebase.svg", language: "Firebase" },
-  { icon: "MUI.svg", language: "Material UI" },
-  { icon: "vercel.svg", language: "Vercel" },
-  { icon: "SweetAlert.svg", language: "SweetAlert2" },
-];
-
 export default function FullWidthTabs() {
   const theme = useTheme();
 
@@ -143,12 +140,9 @@ export default function FullWidthTabs() {
   } = usePortfolio();
 
   useEffect(() => {
-    AOS.init({
-      once: false,
-    });
+    AOS.init(AOS_CONFIG);
   }, []);
-
-  // Sisa dari komponen (return statement) tidak ada perubahan
+  
   return (
     <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
       {/* Header section - unchanged */}
@@ -161,12 +155,11 @@ export default function FullWidthTabs() {
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
-            Portfolio Showcase
+            {PORTFOLIO_HEADER.title}
           </span>
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2">
-          Explore my journey through projects, certifications, and technical expertise. 
-          Each section represents a milestone in my continuous learning path.
+          {PORTFOLIO_HEADER.subtitle}
         </p>
       </div>
 
@@ -239,21 +232,18 @@ export default function FullWidthTabs() {
               },
             }}
           >
-            <Tab
-              icon={<Code className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Projects"
-              {...a11yProps(0)}
-            />
-            <Tab
-              icon={<Award className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Certificates"
-              {...a11yProps(1)}
-            />
-            <Tab
-              icon={<Boxes className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Tech Stack"
-              {...a11yProps(2)}
-            />
+            {PORTFOLIO_TABS.map(({ label, icon: Icon }, index) => (
+              <Tab
+                  key={label}
+                  icon={
+                      <Icon
+                          className="mb-2 w-5 h-5 transition-all duration-300"
+                      />
+                  }
+                  label={label}
+                  {...a11yProps(index)}
+              />
+          ))}
           </Tabs>
         </AppBar>
 
@@ -261,21 +251,25 @@ export default function FullWidthTabs() {
           <TabPanel value={activeTab} index={0} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
-                {displayedProjects.map((project, index) => (
-                  <div
-                    key={project.id || index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <CardProject
-                      Img={project.Img}
-                      Title={project.Title}
-                      Description={project.Description}
-                      Link={project.Link}
-                      id={project.id}
-                    />
-                  </div>
-                ))}
+                {displayedProjects.map((project, index) => {
+                  const animation = getAOSAnimation(index);
+
+                  return (
+                        <div
+                            key={project.id || index}
+                            data-aos={animation.animation}
+                            data-aos-duration={animation.duration}
+                        >
+                          <CardProject
+                              Img={project.Img}
+                              Title={project.Title}
+                              Description={project.Description}
+                              Link={project.Link}
+                              id={project.id}
+                          />
+                      </div>
+                  );
+              })}
               </div>
             </div>
             {projects.length > initialItems && (
@@ -291,15 +285,19 @@ export default function FullWidthTabs() {
           <TabPanel value={activeTab} index={1} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
-                {displayedCertificates.map((certificate, index) => (
-                  <div
-                    key={certificate.id || index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <Certificate ImgSertif={certificate.Img} />
-                  </div>
-                ))}
+                {displayedCertificates.map((certificate, index) => {
+                  const animation = getAOSAnimation(index);
+
+                  return (
+                      <div
+                          key={certificate.id || index}
+                          data-aos={animation.animation}
+                          data-aos-duration={animation.duration}
+                      >
+                          <Certificate ImgSertif={certificate.Img} />
+                      </div>
+                  );
+              })}
               </div>
             </div>
             {certificates.length > initialItems && (
@@ -315,15 +313,22 @@ export default function FullWidthTabs() {
           <TabPanel value={activeTab} index={2} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
-                {techStacks.map((stack, index) => (
-                  <div
-                    key={index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <TechStackIcon TechStackIcon={stack.icon} Language={stack.language} />
-                  </div>
-                ))}
+                {TECH_STACKS.map((stack, index) => {
+                  const animation = getAOSAnimation(index);
+
+                  return (
+                      <div
+                          key={index}
+                          data-aos={animation.animation}
+                          data-aos-duration={animation.duration}
+                      >
+                          <TechStackIcon
+                              TechStackIcon={stack.icon}
+                              Language={stack.language}
+                          />
+                      </div>
+                  );
+              })}
               </div>
             </div>
           </TabPanel>
