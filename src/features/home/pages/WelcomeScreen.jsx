@@ -1,52 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Code2, Github, Globe, User } from 'lucide-react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { motion, AnimatePresence } from "framer-motion";
+import { Code2, Github, Globe, User } from "lucide-react";
 
-const TypewriterEffect = ({ text }) => {
-  const [displayText, setDisplayText] = useState('');
-  
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= text.length) {
-        setDisplayText(text.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 260);
-    
-    return () => clearInterval(timer);
-  }, [text]);
+import BackgroundEffect from "../components/BackgroundEffect";
+import IconButton from "../components/IconButton";
+import Typewriter from "../components/Typewriter";
 
-  return (
-    <span className="inline-block">
-      {displayText}
-      <span className="animate-pulse">|</span>
-    </span>
-  );
-};
+import useWelcomeScreen from "../hooks/useWelcomeScreen";
 
-const BackgroundEffect = () => (
-  <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 blur-3xl animate-pulse" />
-    <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600/10 via-transparent to-purple-600/10 blur-2xl animate-float" />
-  </div>
-);
-
-const IconButton = ({ Icon }) => (
-  <div className="relative group hover:scale-110 transition-transform duration-300">
-    <div className="absolute -inset-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full blur opacity-30 group-hover:opacity-75 transition duration-300" />
-    <div className="relative p-2 sm:p-3 bg-black/50 backdrop-blur-sm rounded-full border border-white/10">
-      <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
-    </div>
-  </div>
-);
 
 const WelcomeScreen = ({ onLoadingComplete }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const {isLoading} = useWelcomeScreen(onLoadingComplete);
 
   useEffect(() => {
     AOS.init({
@@ -161,7 +125,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                   <div className="relative flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
                     <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
                     <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                      <TypewriterEffect text="Hammam Ghina Nur Fauzi" />
+                      <Typewriter text="Hammam Ghina Nur Fauzi" />
                     </span>
                   </div>
                 </a>

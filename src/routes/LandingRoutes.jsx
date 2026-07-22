@@ -8,7 +8,7 @@ import Home from "../features/home/pages/Home";
 import About from "../Pages/About";
 import Portfolio from "../features/portfolio/pages/Portfolio";
 import ContactPage from "../features/contact/pages/Contact";
-import WelcomeScreen from "../Pages/WelcomeScreen";
+import WelcomeScreen from "../features/home/pages/WelcomeScreen";
 
 import LandingLayout from "../layouts/LandingLayout";
 
