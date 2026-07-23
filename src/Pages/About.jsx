@@ -120,7 +120,7 @@ const AboutPage = () => {
     const storedProjects = JSON.parse(localStorage.getItem(STORAGE_KEYS.PROJECTS) || "[]");
     const storedCertificates = JSON.parse(localStorage.getItem("certificates") || "[]");
     
-    const startDate = new Date(`${appConfig.startCodingYear}-01-01`);
+    const startDate = new Date(`${appConfig.developer.startCodingYear}-01-01`);
     const today = new Date();
     const experience = today.getFullYear() - startDate.getFullYear() -
       (today < new Date(today.getFullYear(), startDate.getMonth(), startDate.getDate()) ? 1 : 0);
