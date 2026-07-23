@@ -85,16 +85,29 @@ const ProjectDetails = () => {
 
               <div className="flex flex-wrap gap-3 md:gap-4">
                 {/* Action buttons */}
-                <a
-                  href={project.Link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center space-x-1.5 md:space-x-2 px-4 md:px-8 py-2.5 md:py-4 bg-gradient-to-r from-blue-600/10 to-purple-600/10 hover:from-blue-600/20 hover:to-purple-600/20 text-blue-300 rounded-xl transition-all duration-300 border border-blue-500/20 hover:border-blue-500/40 backdrop-blur-xl overflow-hidden text-sm md:text-base"
-                >
-                  <div className="absolute inset-0 translate-y-[100%] bg-gradient-to-r from-blue-600/10 to-purple-600/10 transition-transform duration-300 group-hover:translate-y-[0%]" />
-                  <ExternalLink className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
-                  <span className="relative font-medium">Live Demo</span>
-                </a>
+                {project.Link ? (
+                  <a
+                    href={project.Link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center space-x-1.5 md:space-x-2 px-4 md:px-8 py-2.5 md:py-4 bg-gradient-to-r from-blue-600/10 to-purple-600/10 hover:from-blue-600/20 hover:to-purple-600/20 text-blue-300 rounded-xl transition-all duration-300 border border-blue-500/20 hover:border-blue-500/40 backdrop-blur-xl overflow-hidden text-sm md:text-base"
+                  >
+                    <div className="absolute inset-0 translate-y-[100%] bg-gradient-to-r from-blue-600/10 to-purple-600/10 transition-transform duration-300 group-hover:translate-y-[0%]" />
+
+                    <ExternalLink className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
+
+                    <span className="relative font-medium">
+                      Live Demo
+                    </span>
+                  </a>
+                ) : (
+                  <div className="inline-flex items-center space-x-2 px-4 md:px-8 py-2.5 md:py-4 rounded-xl border border-gray-700 bg-gray-900/20 text-gray-500 cursor-not-allowed text-sm md:text-base">
+                    <ExternalLink className="w-4 h-4 md:w-5 md:h-5" />
+                    <span className="font-medium">
+                      Demo Not Available
+                    </span>
+                  </div>
+                )}
 
                 <a
                   href={project.Github}
