@@ -1,6 +1,6 @@
 import {
-    LinkedIn,
-    GitHub,
+    Linkedin,
+    Github,
     AtSign,
 } from "lucide-react";
 
@@ -9,7 +9,7 @@ export const SOCIAL_LINKS = [
         name: "LinkedIn",
         displayName: "Let's Connect",
         subText: "on LinkedIn",
-        icon: LinkedIn,
+        icon: Linkedin,
         url: "https://www.linkedin.com/in/hammamghinanurfauzi/",
         color: "#0A66C2",
         gradient: "from-[#0A66C2] to-[#0077B5]",
@@ -28,7 +28,7 @@ export const SOCIAL_LINKS = [
         name: "GitHub",
         displayName: "GitHub",
         subText: "@Hammam-GNF",
-        icon: GitHub,
+        icon: Github,
         url: "https://github.com/Hammam-GNF",
         color: "#ffffff",
         gradient: "from-[#333] to-[#24292e]",

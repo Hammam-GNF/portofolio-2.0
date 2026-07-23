@@ -3,13 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   ExternalLink,
-  GitHub,
+  Github,
   Code2,
   Star,
   ChevronRight,
 } from "lucide-react";
 
-import useProjectDetail from "../hooks";
+import { useProjectDetail } from "../hooks";
 import ProjectStats from "./project/ProjectStats";
 import FeatureItem from "./project/FeatureItem";
 import TechBadge from "./project/TechBadge";
@@ -39,12 +39,11 @@ const ProjectDetails = () => {
     <div className="min-h-screen bg-[#030014] px-[2%] sm:px-0 relative overflow-hidden">
       {/* Background animations remain unchanged */}
       <div className="fixed inset-0">
-        <div className="absolute -inset-[10px] opacity-20">
-          <div className="absolute top-0 -left-4 w-72 md:w-96 h-72 md:h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
-          <div className="absolute top-0 -right-4 w-72 md:w-96 h-72 md:h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
-          <div className="absolute -bottom-8 left-20 w-72 md:w-96 h-72 md:h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
-        </div>
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.02]" />
+          <div className="absolute -inset-[10px] opacity-20">
+              <div className="absolute top-0 -left-4 h-72 w-72 rounded-full bg-purple-500 opacity-70 blur-3xl mix-blend-multiply animate-blob md:h-96 md:w-96" />
+              <div className="animation-delay-2000 absolute top-0 -right-4 h-72 w-72 rounded-full bg-blue-500 opacity-70 blur-3xl mix-blend-multiply animate-blob md:h-96 md:w-96" />
+              <div className="animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 rounded-full bg-pink-500 opacity-70 blur-3xl mix-blend-multiply animate-blob md:h-96 md:w-96" />
+          </div>
       </div>
 
       <div className="relative">
@@ -105,7 +104,7 @@ const ProjectDetails = () => {
                   onClick={(e) => !handleGithubClick(project.Github) && e.preventDefault()}
                 >
                   <div className="absolute inset-0 translate-y-[100%] bg-gradient-to-r from-purple-600/10 to-pink-600/10 transition-transform duration-300 group-hover:translate-y-[0%]" />
-                  <GitHub className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
+                  <Github className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
                   <span className="relative font-medium">Github</span>
                 </a>
               </div>

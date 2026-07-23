@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import usePortfolio from "../hooks";
+import { usePortfolio } from "../hooks";
 import ProjectGrid, { CertificateGrid, TechStackGrid } from "../components";
 
 import {

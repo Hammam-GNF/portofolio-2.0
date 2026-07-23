@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
-import { NAV_ITEMS, COLORS, GRADIENTS } from "@/constants";
+import { NAV_ITEMS, COLORS, GRADIENTS, NAVBAR_CONFIG } from "@/constants";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,23 +11,31 @@ const Navbar = () => {
     useEffect(() => {
 
         const handleScroll = () => {
-            setScrolled(NAVBAR_CONFIG.SCROLL_THRESHOLD);
-            const sections = NAV_ITEMS.map(item => {
+            setScrolled(window.scrollY > NAVBAR_CONFIG.SCROLL_THRESHOLD);
+
+            const sections = NAV_ITEMS.map((item) => {
                 const section = document.querySelector(item.href);
+
                 if (section) {
                     return {
                         id: item.href.replace("#", ""),
-                        offset: section.offsetTop - 550,
-                        height: section.offsetHeight
+                        offset:
+                            section.offsetTop -
+                            NAVBAR_CONFIG.ACTIVE_OFFSET,
+                        height: section.offsetHeight,
                     };
                 }
+
                 return null;
             }).filter(Boolean);
 
             const currentPosition = window.scrollY;
-            const active = sections.find(section => 
-                currentPosition >= section.offset && 
-                currentPosition < section.offset + section.height
+
+            const active = sections.find(
+                (section) =>
+                    currentPosition >= section.offset &&
+                    currentPosition <
+                        section.offset + section.height
             );
 
             if (active) {
@@ -52,7 +60,7 @@ const Navbar = () => {
         e.preventDefault();
         const section = document.querySelector(href);
         if (section) {
-            const top = section.offsetTop - 100;
+            const top = section.offsetTop - NAVBAR_CONFIG.SCROLL_OFFSET;
             window.scrollTo({
                 top: top,
                 behavior: "smooth"

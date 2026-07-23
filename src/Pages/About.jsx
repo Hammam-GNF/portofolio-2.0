@@ -1,6 +1,6 @@
 import React, { useEffect, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
-import { AOS_DEFAULT, STORAGE_KEYS } from "../constants";
+import { AOS_CONFIG, STORAGE_KEYS } from "../constants";
 import appConfig from "../config/app";
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -135,7 +135,7 @@ const AboutPage = () => {
   // Optimized AOS initialization
   useEffect(() => {
     const initAOS = () => {
-      AOS.init(AOS_DEFAULT);
+      AOS.init(AOS_CONFIG);
     };
 
     initAOS();

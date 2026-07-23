@@ -59,9 +59,8 @@ const usePortfolio = () => {
                 certificateService.getAll()
             ]);
 
-
-            setProjects(projectData);
-            setCertificates(certificateData);
+            setProjects(projectData ?? []);
+            setCertificates(certificateData ?? []);
 
 
         } catch (error) {
@@ -80,11 +79,11 @@ const usePortfolio = () => {
     useEffect(() => {
 
         setProjects(
-            projectService.getCached()
+            projectService.getCached() ?? []
         );
 
         setCertificates(
-            certificateService.getCached()
+            certificateService.getCached() ?? []
         );
 
 

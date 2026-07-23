@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code2, GitHub, Globe, User } from "lucide-react";
+import { Code2, Github, Globe, User } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-import { BackgroundEffect, IconButton, Typewriter } from "../components";
+import { BackgroundEffect, IconButton } from "../components";
 
 const WelcomeScreen = ({ onLoadingComplete }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +51,21 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
     }
   };
 
+  const ICONS = [
+    {
+        id: "code",
+        icon: Code2,
+    },
+    {
+        id: "user",
+        icon: User,
+    },
+    {
+        id: "github",
+        icon: Github,
+    },
+];
+
   return (
     <AnimatePresence>
       {isLoading && (
@@ -68,11 +85,15 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                 className="flex justify-center gap-3 sm:gap-4 md:gap-8 mb-6 sm:mb-8 md:mb-12"
                 variants={childVariants}
               >
-                {[Code2, User, GitHub].map((Icon, index) => (
-                  <div key={Icon.name} data-aos="fade-down" data-aos-delay={index * 200}>
-                    <IconButton Icon={Icon} />
-                  </div>
-                ))}
+                {ICONS.map(({ id, icon: Icon }, index) => (
+                      <div
+                          key={id}
+                          data-aos="fade-down"
+                          data-aos-delay={index * 200}
+                      >
+                          <IconButton Icon={Icon} />
+                      </div>
+                  ))}
               </motion.div>
 
               {/* Welcome Text */}
@@ -120,7 +141,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                   <div className="relative flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
                     <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
                     <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                      <Typewriter text="Hammam Ghina Nur Fauzi" />
+                      Hammam Ghina Nur Fauzi
                     </span>
                   </div>
                 </a>

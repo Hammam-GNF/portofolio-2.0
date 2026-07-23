@@ -5,6 +5,7 @@ export { default as Commentar } from "./Commentar";
 export { default as ProjectDetail } from "./ProjectDetail";
 export { default as ProjectGrid } from "./ProjectGrid";
 export { default as TechStackGrid } from "./TechStackGrid";
+export { default } from "./ProjectGrid";
 
 export * from "./comment";
 export * from "./project";

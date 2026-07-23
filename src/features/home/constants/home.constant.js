@@ -1,6 +1,7 @@
 import {
-    GitHub,
-    LinkedIn,
+    Github,
+    Linkedin,
+    Instagram
 } from "lucide-react";
 
 
@@ -31,11 +32,11 @@ export const HOME_TECH_STACK = [
 
 export const HOME_SOCIAL_LINKS = [
     {
-        icon: GitHub,
+        icon: Github,
         link: "https://github.com/Hammam-GNF",
     },
     {
-        icon: LinkedIn,
+        icon: Linkedin,
         link: "https://www.linkedin.com/in/hammamghinanurfauzi/",
     },
     {

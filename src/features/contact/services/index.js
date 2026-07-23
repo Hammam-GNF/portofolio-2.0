@@ -1,1 +1,4 @@
-export { default as contactService } from "./contact.service";
+import contactService from "./contact.service";
+
+export { contactService };
+export default contactService;

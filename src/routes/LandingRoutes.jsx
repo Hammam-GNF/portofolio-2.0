@@ -2,12 +2,13 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import Navbar from "../components/layout/Navbar";
-import AnimatedBackground from "../features/home/components";
+import AnimatedBackground from "../features/home/components/Background";
 
-import Home, { WelcomeScreen } from "../features/home/pages";
+import { Home, WelcomeScreen } from "../features/home/pages";
+import { Portfolio } from "../features/portfolio/pages";
+import { Contact } from "../features/contact/pages";
+
 import About from "../pages/About";
-import Portfolio from "../features/portfolio/pages";
-import ContactPage from "../features/contact/pages";
 
 import LandingLayout from "../layouts/LandingLayout";
 
@@ -32,7 +33,7 @@ const LandingRoutes = () => {
                     <Home />
                     <About />
                     <Portfolio />
-                    <ContactPage />
+                    <Contact />
                 </>
             )}
         </LandingLayout>
