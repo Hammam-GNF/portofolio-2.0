@@ -5,15 +5,7 @@ import { STORAGE_KEYS } from "@/constants";
 const CACHE_KEY = STORAGE_KEYS.PROJECTS;
 
 class ProjectService {
-  async getAll(forceRefresh = false) {
-    if (!forceRefresh) {
-      const cached = storageService.get(CACHE_KEY, []);
-
-      if (cached.length) {
-        return cached;
-      }
-    }
-
+  async getAll() {
     const { data, error } = await supabase
       .from("projects")
       .select("*")
@@ -29,7 +21,7 @@ class ProjectService {
   }
 
   async refresh() {
-    return this.getAll(true);
+    return this.getAll();
   }
 
   getCached() {
@@ -37,25 +29,23 @@ class ProjectService {
   }
 
   getById(id) {
-  const projects = this.getCached();
+    const projects = this.getCached();
 
     const project = projects.find(
-        (item) => String(item.id) === String(id)
+      (item) => String(item.id) === String(id)
     );
 
-
     if (!project) {
-        return null;
+      return null;
     }
-
 
     return {
-        ...project,
-        Features: project.Features || [],
-        TechStack: project.TechStack || [],
-        Github: project.Github || "https://github.com/Hammam-GNF"
+      ...project,
+      Features: project.Features || [],
+      TechStack: project.TechStack || [],
+      Github: project.Github || "https://github.com/Hammam-GNF",
     };
-    }
+  }
 }
 
 export default new ProjectService();

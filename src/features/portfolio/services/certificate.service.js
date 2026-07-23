@@ -5,15 +5,7 @@ import { STORAGE_KEYS } from "@/constants";
 const CACHE_KEY = STORAGE_KEYS.CERTIFICATES;
 
 class CertificateService {
-  async getAll(forceRefresh = false) {
-    if (!forceRefresh) {
-      const cached = storageService.get(CACHE_KEY, []);
-
-      if (cached.length) {
-        return cached;
-      }
-    }
-
+  async getAll() {
     const { data, error } = await supabase
       .from("certificates")
       .select("*")
@@ -29,7 +21,7 @@ class CertificateService {
   }
 
   async refresh() {
-    return this.getAll(true);
+    return this.getAll();
   }
 
   getCached() {
