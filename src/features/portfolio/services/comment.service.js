@@ -6,9 +6,9 @@ class CommentService {
       .from("portfolio_comments")
       .select("*")
       .eq("is_pinned", true)
-      .single();
+      .maybeSingle();
 
-    if (error && error.code !== "PGRST116") {
+    if (error) {
       throw error;
     }
 

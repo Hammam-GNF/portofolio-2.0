@@ -12,15 +12,24 @@ import About from "../pages/About";
 
 import LandingLayout from "../layouts/LandingLayout";
 
+const SESSION_KEY = "portfolio_welcome_seen";
+
 const LandingRoutes = () => {
-    const [showWelcome, setShowWelcome] = useState(true);
+    const [showWelcome, setShowWelcome] = useState(() => {
+        return !sessionStorage.getItem(SESSION_KEY);
+    });
+
+    const handleWelcomeComplete = () => {
+        sessionStorage.setItem(SESSION_KEY, "true");
+        setShowWelcome(false);
+    };
 
     return (
         <LandingLayout>
             <AnimatePresence mode="wait">
                 {showWelcome && (
                     <WelcomeScreen
-                        onLoadingComplete={() => setShowWelcome(false)}
+                        onLoadingComplete={handleWelcomeComplete}
                     />
                 )}
             </AnimatePresence>

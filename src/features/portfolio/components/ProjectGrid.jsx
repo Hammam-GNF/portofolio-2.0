@@ -3,7 +3,7 @@ import { getAOSAnimation } from "@/utils";
 
 
 const ProjectGrid = ({
-    displayedProjects,
+    displayedProjects = [],
 }) => {
 
     return (
